@@ -60,3 +60,6 @@ next-env.d.ts
 /vite.config.ts
 /public/*.svg
 /public/og-cover.png
+
+# daily generation scratch data
+/.daily-work/

@@ -10,6 +10,11 @@ on:
         description: "补生成日期（YYYY-MM-DD），留空则使用当天"
         required: false
         type: string
+      test_only:
+        description: "仅测试完整流程，不提交日报"
+        required: false
+        default: false
+        type: boolean
 
 permissions:
   contents: write
@@ -21,6 +26,7 @@ concurrency:
 jobs:
   generate:
     runs-on: ubuntu-latest
+    timeout-minutes: 30
     steps:
       - name: Checkout
         uses: actions/checkout@v6
@@ -28,20 +34,59 @@ jobs:
         uses: actions/setup-node@v6
         with:
           node-version: "22"
-      - name: Generate daily issue
+      - name: Prepare trusted news candidates
+        id: prepare
         env:
-          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-          OPENAI_MODEL: gpt-5.6-terra
           INPUT_DATE: ${{ inputs.date }}
         run: |
           if [ -n "$INPUT_DATE" ]; then
-            node scripts/generate-daily.mjs --date="$INPUT_DATE"
+            node scripts/generate-daily.mjs --prepare-local --date="$INPUT_DATE"
           else
-            node scripts/generate-daily.mjs
+            node scripts/generate-daily.mjs --prepare-local
           fi
+      - name: Restore local model cache
+        if: steps.prepare.outputs.has_candidates == 'true'
+        id: model-cache
+        uses: actions/cache@v5
+        with:
+          path: ~/.cache/global-ai-daily
+          key: qwen3-4b-q4-k-m-v1
+      - name: Download verified open-source model
+        if: steps.prepare.outputs.has_candidates == 'true' && steps.model-cache.outputs.cache-hit != 'true'
+        run: |
+          mkdir -p "$HOME/.cache/global-ai-daily"
+          curl -fL --retry 5 --retry-delay 5 \
+            -o "$HOME/.cache/global-ai-daily/Qwen3-4B-Q4_K_M.gguf" \
+            "https://huggingface.co/Qwen/Qwen3-4B-GGUF/resolve/main/Qwen3-4B-Q4_K_M.gguf?download=true"
+          echo "ab27b9bfa375a178d6cba48f3ad892b94b7739659dcc7aae8058ce0ffed6b328  $HOME/.cache/global-ai-daily/Qwen3-4B-Q4_K_M.gguf" | sha256sum -c -
+      - name: Start local Qwen model
+        if: steps.prepare.outputs.has_candidates == 'true'
+        run: |
+          docker run -d --name global-ai-local-llm -p 8080:8080 \
+            -v "$HOME/.cache/global-ai-daily:/models:ro" \
+            ghcr.io/ggml-org/llama.cpp:server \
+            -m /models/Qwen3-4B-Q4_K_M.gguf \
+            --host 0.0.0.0 --port 8080 --ctx-size 16384 --threads 4 --parallel 1
+          for attempt in {1..90}; do
+            if curl -fsS http://127.0.0.1:8080/health >/dev/null; then
+              exit 0
+            fi
+            sleep 2
+          done
+          docker logs global-ai-local-llm
+          exit 1
+      - name: Generate daily issue locally
+        if: steps.prepare.outputs.has_candidates == 'true'
+        env:
+          LOCAL_LLM_URL: http://127.0.0.1:8080/v1/chat/completions
+        run: node scripts/generate-daily.mjs --finalize-local
+      - name: Stop local model
+        if: always() && steps.prepare.outputs.has_candidates == 'true'
+        run: docker rm -f global-ai-local-llm || true
       - name: Validate content
         run: node scripts/validate-content.mjs
       - name: Commit new issue
+        if: inputs.test_only != true
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"

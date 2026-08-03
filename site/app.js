@@ -45,6 +45,10 @@ function renderIssue(issue) {
 
   const list = document.querySelector("#story-list");
   list.replaceChildren();
+  if (!issue.items.length) {
+    list.append(node("p", "load-error", "经核验，前一天没有筛得足够重要且有可靠来源佐证的 AI 技术进展。本期不以旧闻或营销内容凑数。"));
+    return;
+  }
   issue.items.forEach((item, index) => {
     const article = node("article", "story");
     article.append(node("div", "story-rank", String(index + 1).padStart(2, "0")));

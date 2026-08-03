@@ -22,8 +22,8 @@ console.log(`内容校验通过：${files.length} 期日报，最新一期 ${ind
 function validateIssue(issue, file) {
   if (!/^\d{4}-\d{2}-\d{2}$/.test(issue.date)) throw new Error(`${file}: date 格式错误。`);
   if (!/^\d{2}\.\d{2}$/.test(issue.label)) throw new Error(`${file}: label 格式错误。`);
-  if (!Array.isArray(issue.items) || issue.items.length < 1 || issue.items.length > 5) {
-    throw new Error(`${file}: 每期必须包含 1–5 条内容。`);
+  if (!Array.isArray(issue.items) || issue.items.length > 5) {
+    throw new Error(`${file}: 每期必须包含 0–5 条内容。`);
   }
 
   issue.items.forEach((item, index) => {
