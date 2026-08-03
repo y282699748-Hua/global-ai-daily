@@ -3,8 +3,7 @@
 一个自动更新的中文 AI 技术日报网站。每个工作日早上 09:00（Asia/Shanghai），GitHub Actions 会检索前一天的全球 AI 技术进展，最多选择 5 条，按重要性与先进性排序，并生成：
 
 - GitHub Pages 网站内容；
-- 对应日期的 JSON 数据；
-- `yyyy.MM/mm.dd.txt` 文本备份。
+- 对应日期的 JSON 数据。
 
 每条内容包含简要总结、通俗解释和原始来源。
 
