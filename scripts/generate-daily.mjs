@@ -431,22 +431,6 @@ async function writeOutputs(issue) {
     writeFile(path.join(root, "site", "data", "index.json"), indexJson, "utf8")
   ]);
 
-  const monthDir = path.join(root, `${issue.date.slice(0, 4)}.${issue.date.slice(5, 7)}`);
-  await mkdir(monthDir, { recursive: true });
-  await writeFile(path.join(monthDir, `${issue.label}.txt`), formatTxt(issue), "utf8");
-}
-
-function formatTxt(issue) {
-  if (!issue.items.length) {
-    return `${issue.label}（检索范围：${issue.coverageLabel}）\n\n经自动核验，未筛得在 ${issue.coverageDate} 发布、且由当前高可信资讯源可靠佐证的重大 AI 技术进展。本期不以旧闻、营销内容或未经证实的消息凑数。\n`;
-  }
-  const blocks = issue.items.map((item, index) => {
-    const sources = item.sources
-      .map((source, sourceIndex) => `${sourceIndex === 0 ? "来源" : "参考"}：${source.url}`)
-      .join("\n");
-    return `${index + 1}. ${item.title}\n\n${item.summary}\n\n通俗解释：${item.explanation}\n\n${sources}`;
-  });
-  return `${issue.label}（检索范围：${issue.coverageLabel}）\n\n${blocks.join("\n\n\n\n")}\n`;
 }
 
 function validateIssue(issue, allowedUrls = null) {
@@ -517,7 +501,5 @@ function runSelfTest() {
   if (entries[0].title !== "New multimodal model & benchmark") throw new Error("自检失败：实体解码错误。");
   if (!matchesCoverageDate(entries[0].publishedAt, "2026-08-02")) throw new Error("自检失败：日期匹配错误。");
   if (canonicalUrl(entries[0].url) !== "https://example.com/research?id=1") throw new Error("自检失败：URL 规范化错误。");
-  const txt = formatTxt({ label: "08.03", coverageLabel: "08.02", coverageDate: "2026-08-02", items: [] });
-  if (!txt.includes("不以旧闻")) throw new Error("自检失败：空日报文本错误。");
   console.log("generate-daily.mjs 自检通过。");
 }
