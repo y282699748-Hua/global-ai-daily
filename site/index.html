@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="每个工作日精选不超过 5 条全球 AI 技术进展，并附通俗解释与原始来源。" />
+    <meta property="og:title" content="全球 AI 资讯日报" />
+    <meta property="og:description" content="每天不超过 5 条，只保留真正重要的 AI 技术进展。" />
+    <meta property="og:image" content="og-cover.png" />
+    <title>全球 AI 资讯日报</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script src="app.js" defer></script>
+  </head>
+  <body>
+    <main>
+      <header class="masthead">
+        <a class="brand" href="#top" aria-label="返回顶部">
+          <span class="brand-mark">AI</span>
+          <span>全球资讯日报</span>
+        </a>
+        <div class="masthead-meta"><span class="status-dot"></span>工作日 09:00 更新</div>
+      </header>
+
+      <section class="hero" id="top">
+        <div class="hero-copy">
+          <p class="eyebrow">GLOBAL AI INTELLIGENCE · DAILY</p>
+          <h1>看懂全球 AI，<br />从最重要的 <em>5 条</em>开始。</h1>
+          <p class="hero-intro">每个工作日检索前一天的技术进展，按重要性与先进性排序，并把专业信息翻译成容易理解的话。</p>
+          <div class="hero-stats">
+            <div><strong id="item-count">—</strong><span>今日精选</span></div>
+            <div><strong id="coverage-date">—</strong><span>检索范围</span></div>
+            <div><strong>3–5 min</strong><span>预计阅读</span></div>
+          </div>
+        </div>
+        <div class="hero-visual" aria-hidden="true">
+          <img src="og-cover.png" alt="" />
+          <div class="hero-date"><span>ISSUE</span><strong id="hero-date">—</strong><small id="hero-year">—</small></div>
+        </div>
+      </section>
+
+      <div class="content-shell">
+        <aside class="issue-nav" id="archive">
+          <p class="section-kicker">日报存档</p>
+          <p class="archive-note">正在载入日报……</p>
+        </aside>
+        <section class="daily" id="daily" aria-live="polite">
+          <div class="daily-heading">
+            <div><p class="section-kicker">今日简报</p><h2 id="issue-date">—</h2></div>
+            <p>检索范围：<span id="issue-coverage">—</span></p>
+          </div>
+          <div class="story-list" id="story-list"></div>
+        </section>
+      </div>
+      <footer><p>全球 AI 资讯日报</p><span>少一点信息噪声，多一点真正重要的进展。</span></footer>
+    </main>
+  </body>
+</html>

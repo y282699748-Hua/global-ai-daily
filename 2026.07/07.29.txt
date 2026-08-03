@@ -1,0 +1,34 @@
+07.29（检索范围：07.28）
+
+1. MCP 发布 2026-07-28 版规范，完成自推出以来幅度最大的协议升级。新版将核心协议改为无状态架构，移除初始化握手和会话依赖，引入扩展机制、长时任务（Tasks）、可嵌入交互界面的 MCP Apps，并强化 OAuth/OIDC 授权兼容性。其重要意义在于降低远程 AI 工具服务的扩容与运维复杂度，同时为长时运行、可交互的智能体应用建立更稳定的开放标准。
+
+通俗解释：MCP 可以理解为“AI 连接各种软件和工具的通用插座”。这次升级让这个插座更容易部署和扩容，也能更好地支持需要运行很久、带交互界面的 AI 任务。
+
+来源：https://modelcontextprotocol.io/specification/2026-07-28
+参考：https://blog.modelcontextprotocol.io/posts/2026-07-28-release-candidate/
+
+
+
+2. Exabase 公布 AI 智能体长期记忆系统 M-1 的新基准结果。该系统在 BEAM 的 10 万、100 万和 1000 万 token 三个规模上分别取得 76.9%、75.0% 和 68.0%，并称使用成本更低的 Gemini 3 Flash、单次查询 token 消耗比次优系统少约 20%。这表明智能体处理跨月乃至跨年历史信息时，外部记忆与检索架构可能比单纯扩大上下文窗口更具扩展性。相关成绩为厂商披露，仍需更多独立复现。
+
+通俗解释：普通 AI 很容易“聊久了就忘记”。M-1 相当于给 AI 配备可检索的长期笔记本，使它能从大量历史记录中找到需要的信息，而且可能比一味增大模型记忆容量更省钱。
+
+来源：https://exabase.io/research/exabase-achieves-state-of-the-art-on-beam-benchmark
+发布日期依据：https://www.prnewswire.com/news-releases/exabase-achieves-state-of-the-art-on-beam-memory-benchmark-at-every-scale-using-a-smaller-cheaper-model-302835412.html
+
+
+
+3. 微软首款专用网络安全模型 MAI-Cyber-1-Flash 引发广泛关注。它被集成进由 100 多个专用智能体组成的 MDASH 漏洞发现与修复系统；微软称该组合在 CyberGym 上达到 96%，并通过让专用模型处理约 90% 的任务、仅把最难任务交给大型模型，使成本较现有方案降低约 50%。这体现了“专用小模型＋多智能体编排＋少量前沿模型”的工程化路线。基准结果来自微软，尚待独立验证。
+
+通俗解释：微软让一批擅长不同工作的“小型 AI 安全专家”先处理大多数漏洞，只把特别困难的问题交给更强、更贵的大模型。这有点像团队分级处理工单，可以同时提高效率并降低成本。
+
+来源：https://blogs.microsoft.com/blog/2026/07/27/rethinking-security-for-the-age-of-ai/
+07.28 报道：https://www.securityweek.com/microsoft-unveils-mai-cyber-1-flash-its-first-cybersecurity-ai-model/
+
+
+
+4. 亚马逊被曝收缩多数 Nova 旗舰模型的持续开发，并将资源集中到由 Pieter Abbeel 领导的新一代前沿模型项目。涉及 Premier、Omni、Reel 和 Canvas 等模型；新旗舰模型预计在年内 re:Invent 亮相。若后续获正式发布确认，这意味着 AWS 的自研模型路线将由多产品并行转向更集中的前沿模型研发。该项目前主要依据 Reuters 转述 Business Insider 的报道，亚马逊仅确认会持续调整产品组合并投资下一代前沿模型研究。
+
+通俗解释：亚马逊可能不再同时重点培养很多不同模型，而是把人才和算力集中起来打造一个更强的新模型。这样更容易集中力量突破，但现阶段仍主要是媒体消息，需要等待亚马逊正式公布。
+
+来源：https://www.investing.com/news/stock-market-news/amazon-winds-down-most-flagship-ai-models-in-strategy-overhaul-business-insider-reports-4816098

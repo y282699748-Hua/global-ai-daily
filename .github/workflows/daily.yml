@@ -1,0 +1,54 @@
+name: 生成 AI 日报
+
+on:
+  schedule:
+    - cron: "0 9 * * 1-5"
+      timezone: "Asia/Shanghai"
+  workflow_dispatch:
+    inputs:
+      date:
+        description: "补生成日期（YYYY-MM-DD），留空则使用当天"
+        required: false
+        type: string
+
+permissions:
+  contents: write
+
+concurrency:
+  group: daily-ai-news
+  cancel-in-progress: false
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+      - name: Setup Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: "22"
+      - name: Generate daily issue
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          OPENAI_MODEL: gpt-5.6-terra
+          INPUT_DATE: ${{ inputs.date }}
+        run: |
+          if [ -n "$INPUT_DATE" ]; then
+            node scripts/generate-daily.mjs --date="$INPUT_DATE"
+          else
+            node scripts/generate-daily.mjs
+          fi
+      - name: Validate content
+        run: node scripts/validate-content.mjs
+      - name: Commit new issue
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add public/data site/data 20??.??/*.txt
+          if git diff --cached --quiet; then
+            echo "No changes to commit."
+          else
+            git commit -m "daily: update AI news"
+            git push
+          fi

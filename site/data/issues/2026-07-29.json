@@ -1,0 +1,48 @@
+{
+  "date": "2026-07-29",
+  "label": "07.29",
+  "year": "2026",
+  "coverageDate": "2026-07-28",
+  "coverageLabel": "07.28",
+  "items": [
+    {
+      "category": "开放标准",
+      "title": "MCP 完成推出以来幅度最大的协议升级",
+      "summary": "MCP 发布 2026-07-28 版规范。新版将核心协议改为无状态架构，移除初始化握手和会话依赖，引入扩展机制、长时任务（Tasks）、可嵌入交互界面的 MCP Apps，并强化 OAuth/OIDC 授权兼容性。其重要意义在于降低远程 AI 工具服务的扩容与运维复杂度，同时为长时运行、可交互的智能体应用建立更稳定的开放标准。",
+      "explanation": "MCP 可以理解为“AI 连接各种软件和工具的通用插座”。这次升级让这个插座更容易部署和扩容，也能更好地支持需要运行很久、带交互界面的 AI 任务。",
+      "sources": [
+        { "label": "MCP 2026-07-28 规范", "url": "https://modelcontextprotocol.io/specification/2026-07-28" },
+        { "label": "MCP 官方发布说明", "url": "https://blog.modelcontextprotocol.io/posts/2026-07-28-release-candidate/" }
+      ]
+    },
+    {
+      "category": "智能体记忆",
+      "title": "Exabase 公布智能体长期记忆系统 M-1 新成绩",
+      "summary": "M-1 在 BEAM 的 10 万、100 万和 1000 万 token 三个规模上分别取得 76.9%、75.0% 和 68.0%，并称使用成本更低的 Gemini 3 Flash、单次查询 token 消耗比次优系统少约 20%。这表明智能体处理跨月乃至跨年历史信息时，外部记忆与检索架构可能比单纯扩大上下文窗口更具扩展性。相关成绩为厂商披露，仍需更多独立复现。",
+      "explanation": "普通 AI 很容易“聊久了就忘记”。M-1 相当于给 AI 配备可检索的长期笔记本，使它能从大量历史记录中找到需要的信息，而且可能比一味增大模型记忆容量更省钱。",
+      "sources": [
+        { "label": "Exabase 研究说明", "url": "https://exabase.io/research/exabase-achieves-state-of-the-art-on-beam-benchmark" },
+        { "label": "PR Newswire 发布信息", "url": "https://www.prnewswire.com/news-releases/exabase-achieves-state-of-the-art-on-beam-memory-benchmark-at-every-scale-using-a-smaller-cheaper-model-302835412.html" }
+      ]
+    },
+    {
+      "category": "AI 安全",
+      "title": "微软用专用小模型与多智能体重构漏洞发现流程",
+      "summary": "微软首款专用网络安全模型 MAI-Cyber-1-Flash 被集成进由 100 多个专用智能体组成的 MDASH 漏洞发现与修复系统。微软称该组合在 CyberGym 上达到 96%，并通过让专用模型处理约 90% 的任务、仅把最难任务交给大型模型，使成本较现有方案降低约 50%。这体现了“专用小模型＋多智能体编排＋少量前沿模型”的工程化路线；基准结果尚待独立验证。",
+      "explanation": "微软让一批擅长不同工作的“小型 AI 安全专家”先处理大多数漏洞，只把特别困难的问题交给更强、更贵的大模型。这有点像团队分级处理工单，可以同时提高效率并降低成本。",
+      "sources": [
+        { "label": "微软官方博客", "url": "https://blogs.microsoft.com/blog/2026/07/27/rethinking-security-for-the-age-of-ai/" },
+        { "label": "SecurityWeek 报道", "url": "https://www.securityweek.com/microsoft-unveils-mai-cyber-1-flash-its-first-cybersecurity-ai-model/" }
+      ]
+    },
+    {
+      "category": "行业战略",
+      "title": "亚马逊据报收缩多条 Nova 路线并集中研发新模型",
+      "summary": "亚马逊被曝收缩多数 Nova 旗舰模型的持续开发，并将资源集中到由 Pieter Abbeel 领导的新一代前沿模型项目。若后续获正式发布确认，这意味着 AWS 的自研模型路线将由多产品并行转向更集中的前沿模型研发。目前主要依据 Reuters 转述 Business Insider 的报道，亚马逊仅确认会持续调整产品组合并投资下一代前沿模型研究。",
+      "explanation": "亚马逊可能不再同时重点培养很多不同模型，而是把人才和算力集中起来打造一个更强的新模型。这样更容易集中力量突破，但现阶段仍主要是媒体消息，需要等待亚马逊正式公布。",
+      "sources": [
+        { "label": "Reuters 转述报道", "url": "https://www.investing.com/news/stock-market-news/amazon-winds-down-most-flagship-ai-models-in-strategy-overhaul-business-insider-reports-4816098" }
+      ]
+    }
+  ]
+}
