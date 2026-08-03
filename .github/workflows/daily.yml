@@ -58,7 +58,7 @@ jobs:
           curl -fL --retry 5 --retry-delay 5 \
             -o "$HOME/.cache/global-ai-daily/Qwen3-4B-Q4_K_M.gguf" \
             "https://huggingface.co/Qwen/Qwen3-4B-GGUF/resolve/main/Qwen3-4B-Q4_K_M.gguf?download=true"
-          echo "ab27b9bfa375a178d6cba48f3ad892b94b7739659dcc7aae8058ce0ffed6b328  $HOME/.cache/global-ai-daily/Qwen3-4B-Q4_K_M.gguf" | sha256sum -c -
+          echo "7485fe6f11af29433bc51cab58009521f205840f5b4ae3a32fa7f92e8534fdf5  $HOME/.cache/global-ai-daily/Qwen3-4B-Q4_K_M.gguf" | sha256sum -c -
       - name: Start local Qwen model
         if: steps.prepare.outputs.has_candidates == 'true'
         run: |
