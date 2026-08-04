@@ -7,9 +7,9 @@
   "items": [
     {
       "category": "智能体",
-      "title": "Orchard: An open framework for scalable agentic AI",
-      "summary": "Microsoft Research released an open-source framework called Orchard, which allows researchers to train and evaluate AI agents across various tasks. The framework reduces complexity while supporting strong performance from smaller models by enabling researchers to reuse the same infrastructure.",
-      "explanation": "Orchard is a new open-source framework that helps researchers train and test AI agents more efficiently. It allows smaller models to perform well by reusing the same infrastructure, making it easier to handle different tasks.",
+      "title": "微软开源 Orchard：面向可扩展智能体 AI 的训练与评测框架",
+      "summary": "微软研究院开源了 Orchard 框架，用一套可复用的环境服务支持软件工程、网页操作和个人助理等智能体的训练与评测。微软官方称，约 30 亿激活参数的 Orchard-SWE 在 SWE-bench Verified 上达到 69.7%，经价值模型重排后达到 73.0%；这些结果尚待独立验证。",
+      "explanation": "可以把 Orchard 理解成智能体共用的“训练场和考场”。研究人员不必为每类任务重新搭建整套环境，小模型也有机会通过更好的训练方法完成复杂任务。",
       "sources": [
         {
           "label": "Microsoft Research",

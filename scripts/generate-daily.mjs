@@ -297,7 +297,7 @@ function scoreCandidate(entry, source) {
   return score;
 }
 
-async function createDigestWithLocalModel({ candidates, coverageDate }) {
+async function createDigestWithLocalModel({ candidates, coverageDate }, attempt = 1) {
   const allowedSources = new Map(candidates.map((candidate) => [canonicalUrl(candidate.url), candidate]));
   const compactCandidates = candidates.map((candidate, index) => ({
     id: index + 1,
@@ -307,6 +307,9 @@ async function createDigestWithLocalModel({ candidates, coverageDate }) {
     url: candidate.url,
     excerpt: candidate.summary.slice(0, 1200)
   }));
+  const retryWarning = attempt > 1
+    ? "\n重要纠错：上一次输出包含过多英文。本次所有面向读者的字段必须使用简体中文，否则结果会被拒绝。\n"
+    : "";
   const prompt = `/no_think
 你是“全球 AI 资讯日报”的主编。下面是从官方博客、研究机构和 arXiv RSS/Atom 中抓取、日期与 ${coverageDate} 相符的候选内容。
 
@@ -315,10 +318,12 @@ async function createDigestWithLocalModel({ candidates, coverageDate }) {
 2. 优先模型与算法突破、智能体、训练/推理系统、芯片与基础设施、AI 安全、开放标准及高可信研究。
 3. 排除普通营销、融资、观点文章、活动预告和没有技术增量的内容。
 4. 不得增加候选内容没有提供的事实、数字或 URL；厂商自报结果须明确写成“官方称”或“尚待独立验证”。
-5. summary 用简洁中文说明“发生了什么、为什么重要、有什么限制”；explanation 用更通俗、尽量简短的中文解释。
-6. 每条 sources 至少一个来源，url 必须原样复制候选内容中的 URL，label 使用对应来源名称。
-7. 只返回合法 JSON，不要 Markdown，不要前后说明。格式如下：
+5. category、title、summary、explanation 必须全部使用简体中文；技术产品名可保留原文，但不得输出完整英文句子，title 必须包含中文说明。
+6. summary 用简洁中文说明“发生了什么、为什么重要、有什么限制”；explanation 用更通俗、尽量简短的中文解释。
+7. 每条 sources 至少一个来源，url 必须原样复制候选内容中的 URL，label 使用对应来源名称。
+8. 只返回合法 JSON，不要 Markdown，不要前后说明。格式如下：
 {"items":[{"category":"分类","title":"标题","summary":"总结","explanation":"通俗解释","sources":[{"label":"来源名称","url":"候选 URL"}]}]}
+${retryWarning}
 
 候选内容：
 ${JSON.stringify(compactCandidates)}
@@ -330,7 +335,7 @@ ${JSON.stringify(compactCandidates)}
       { role: "system", content: "你是严谨的中文科技编辑。只使用给定证据，输出合法 JSON。" },
       { role: "user", content: prompt }
     ],
-    temperature: 0.2,
+    temperature: attempt === 1 ? 0.2 : 0.05,
     max_tokens: 3000,
     response_format: { type: "json_object" }
   };
@@ -352,7 +357,7 @@ ${JSON.stringify(compactCandidates)}
   const parsed = JSON.parse(extractJsonObject(content));
   if (!Array.isArray(parsed.items)) throw new Error("本地开源模型返回结果缺少 items 数组。");
 
-  return parsed.items.map((item, index) => {
+  const items = parsed.items.map((item, index) => {
     const sources = (item.sources || []).map((source) => {
       const candidate = allowedSources.get(canonicalUrl(source.url));
       if (!candidate) throw new Error(`第 ${index + 1} 条引用了候选列表之外的来源：${source.url}`);
@@ -366,6 +371,16 @@ ${JSON.stringify(compactCandidates)}
       sources
     };
   });
+
+  const languageProblems = findChineseLanguageProblems(items);
+  if (languageProblems.length) {
+    if (attempt < 3) {
+      console.warn(`模型输出未满足中文要求，正在进行第 ${attempt + 1} 次生成：${languageProblems.join("；")}`);
+      return createDigestWithLocalModel({ candidates, coverageDate }, attempt + 1);
+    }
+    throw new Error(`模型连续 3 次未满足中文要求，停止发布：${languageProblems.join("；")}`);
+  }
+  return items;
 }
 
 function requestLocalInference(body) {
@@ -382,6 +397,28 @@ function extractJsonObject(content) {
   const end = withoutThink.lastIndexOf("}");
   if (start < 0 || end <= start) throw new Error("模型返回内容不包含 JSON 对象。");
   return withoutThink.slice(start, end + 1);
+}
+
+function findChineseLanguageProblems(items) {
+  const requirements = {
+    category: { minHan: 2, minShare: 0.5 },
+    title: { minHan: 4, minShare: 0.2 },
+    summary: { minHan: 12, minShare: 0.35 },
+    explanation: { minHan: 10, minShare: 0.35 }
+  };
+  const problems = [];
+  for (const [index, item] of items.entries()) {
+    for (const [key, requirement] of Object.entries(requirements)) {
+      const value = String(item[key] || "");
+      const han = (value.match(/\p{Script=Han}/gu) || []).length;
+      const latin = (value.match(/[A-Za-z]/g) || []).length;
+      const share = han / Math.max(1, han + latin);
+      if (han < requirement.minHan || share < requirement.minShare) {
+        problems.push(`第 ${index + 1} 条 ${key} 不是以中文为主`);
+      }
+    }
+  }
+  return problems;
 }
 
 async function loadPreviouslyReportedUrls() {
@@ -438,6 +475,10 @@ function validateIssue(issue, allowedUrls = null) {
     throw new Error("生成结果必须包含 0–5 条日报。");
   }
   const seenUrls = new Set();
+  const languageProblems = findChineseLanguageProblems(issue.items);
+  if (languageProblems.length) {
+    throw new Error(`生成结果必须使用简体中文：${languageProblems.join("；")}`);
+  }
   for (const [index, item] of issue.items.entries()) {
     for (const key of ["category", "title", "summary", "explanation"]) {
       if (typeof item[key] !== "string" || !item[key].trim()) {
@@ -501,5 +542,19 @@ function runSelfTest() {
   if (entries[0].title !== "New multimodal model & benchmark") throw new Error("自检失败：实体解码错误。");
   if (!matchesCoverageDate(entries[0].publishedAt, "2026-08-02")) throw new Error("自检失败：日期匹配错误。");
   if (canonicalUrl(entries[0].url) !== "https://example.com/research?id=1") throw new Error("自检失败：URL 规范化错误。");
+  const chineseItem = [{
+    category: "智能体",
+    title: "开源智能体训练框架取得新进展",
+    summary: "研究团队发布了面向复杂任务的开源智能体训练框架，并说明了主要技术特点和适用限制。",
+    explanation: "可以把它理解成一套帮助智能体练习和考试的通用工具。"
+  }];
+  if (findChineseLanguageProblems(chineseItem).length) throw new Error("自检失败：中文内容被错误拒绝。");
+  const englishItem = [{
+    category: "Agent",
+    title: "An open framework for scalable agentic AI",
+    summary: "The research team released an open framework for training and evaluating agents.",
+    explanation: "It helps researchers build agents more efficiently."
+  }];
+  if (!findChineseLanguageProblems(englishItem).length) throw new Error("自检失败：英文内容未被拒绝。");
   console.log("generate-daily.mjs 自检通过。");
 }
