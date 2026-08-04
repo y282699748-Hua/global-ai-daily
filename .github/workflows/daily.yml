@@ -2,7 +2,11 @@ name: 生成 AI 日报
 
 on:
   schedule:
-    - cron: "0 9 * * 1-5"
+    # Start before 09:00 and avoid the top-of-hour GitHub Actions queue.
+    - cron: "40 8 * * 1-5"
+      timezone: "Asia/Shanghai"
+    # Fallback run. It exits early when the first run already published today.
+    - cron: "15 9 * * 1-5"
       timezone: "Asia/Shanghai"
   workflow_dispatch:
     inputs:
@@ -30,11 +34,28 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v6
+      - name: Check whether today's issue already exists
+        id: issue
+        env:
+          INPUT_DATE: ${{ inputs.date }}
+        run: |
+          report_date="$INPUT_DATE"
+          if [ -z "$report_date" ]; then
+            report_date="$(TZ=Asia/Shanghai date +%F)"
+          fi
+          echo "report_date=$report_date" >> "$GITHUB_OUTPUT"
+          if [ "$GITHUB_EVENT_NAME" = "schedule" ] && [ -f "site/data/issues/$report_date.json" ]; then
+            echo "needs_generation=false" >> "$GITHUB_OUTPUT"
+            echo "$report_date already exists; skipping fallback generation."
+          else
+            echo "needs_generation=true" >> "$GITHUB_OUTPUT"
+          fi
       - name: Setup Node.js
         uses: actions/setup-node@v6
         with:
           node-version: "22"
       - name: Prepare trusted news candidates
+        if: steps.issue.outputs.needs_generation == 'true'
         id: prepare
         env:
           INPUT_DATE: ${{ inputs.date }}
