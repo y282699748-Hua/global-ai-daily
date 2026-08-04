@@ -1,0 +1,21 @@
+{
+  "date": "2026-08-04",
+  "label": "08.04",
+  "year": "2026",
+  "coverageDate": "2026-08-03",
+  "coverageLabel": "08.03",
+  "items": [
+    {
+      "category": "智能体",
+      "title": "Orchard: An open framework for scalable agentic AI",
+      "summary": "Microsoft Research released an open-source framework called Orchard, which allows researchers to train and evaluate AI agents across various tasks. The framework reduces complexity while supporting strong performance from smaller models by enabling researchers to reuse the same infrastructure.",
+      "explanation": "Orchard is a new open-source framework that helps researchers train and test AI agents more efficiently. It allows smaller models to perform well by reusing the same infrastructure, making it easier to handle different tasks.",
+      "sources": [
+        {
+          "label": "Microsoft Research",
+          "url": "https://www.microsoft.com/en-us/research/blog/orchard-an-open-framework-for-scalable-agentic-ai/"
+        }
+      ]
+    }
+  ]
+}
