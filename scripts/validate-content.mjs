@@ -32,6 +32,10 @@ function validateIssue(issue, file) {
         throw new Error(`${file}: 第 ${index + 1} 条缺少 ${key}。`);
       }
     }
+    const languageProblems = findChineseLanguageProblems(item);
+    if (languageProblems.length) {
+      throw new Error(`${file}: 第 ${index + 1} 条必须使用简体中文（${languageProblems.join("、")}）。`);
+    }
     if (!Array.isArray(item.sources) || !item.sources.length) {
       throw new Error(`${file}: 第 ${index + 1} 条至少需要一个来源。`);
     }
@@ -41,4 +45,22 @@ function validateIssue(issue, file) {
       }
     });
   });
+}
+
+function findChineseLanguageProblems(item) {
+  const requirements = {
+    category: { minHan: 2, minShare: 0.5 },
+    title: { minHan: 4, minShare: 0.2 },
+    summary: { minHan: 12, minShare: 0.35 },
+    explanation: { minHan: 10, minShare: 0.35 }
+  };
+  const problems = [];
+  for (const [key, requirement] of Object.entries(requirements)) {
+    const value = String(item[key] || "");
+    const han = (value.match(/\p{Script=Han}/gu) || []).length;
+    const latin = (value.match(/[A-Za-z]/g) || []).length;
+    const share = han / Math.max(1, han + latin);
+    if (han < requirement.minHan || share < requirement.minShare) problems.push(key);
+  }
+  return problems;
 }
