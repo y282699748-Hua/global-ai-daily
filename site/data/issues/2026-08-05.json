@@ -9,7 +9,7 @@
       "category": "AI安全",
       "title": "OpenAI 推出第三方网络安全评估计划",
       "summary": "OpenAI 近期进行了第三方网络安全评估，并介绍了新的安全措施以加强 AI 模型的测试和评估。",
-      "explanation": "OpenAI 近期进行了第三方网络安全评估，并介绍了新的安全措施以加强 AI 模型的测试和评估。",
+      "explanation": "相当于请外部安全专家给 AI 做一次攻防体检，看看它会不会被滥用或被绕过防护。",
       "sources": [
         {
           "label": "OpenAI News",
@@ -21,7 +21,7 @@
       "category": "智能体",
       "title": "Amazon Bedrock 推出 Web 搜索功能",
       "summary": "Amazon Bedrock 推出 Web 搜索功能，使模型响应能够基于当前网络知识进行 grounding。",
-      "explanation": "Amazon Bedrock 推出 Web 搜索功能，使模型响应能够基于当前网络知识进行 grounding。",
+      "explanation": "相当于让模型回答前先上网查资料，能减少因知识陈旧而答错，但使用者仍需核对来源。",
       "sources": [
         {
           "label": "AWS Machine Learning Blog",
@@ -30,10 +30,10 @@
       ]
     },
     {
-      "category": "AI安全",
+      "category": "机器人",
       "title": "NVIDIA 世界动作模型重塑机器人操作",
       "summary": "NVIDIA 介绍了一种新的世界动作模型，该模型能够重塑机器人操作，解决机器人在训练场景外泛化的问题。",
-      "explanation": "NVIDIA 介绍了一种新的世界动作模型，该模型能够重塑机器人操作，解决机器人在训练场景外泛化的问题。",
+      "explanation": "它让机器人先预测动作可能带来的结果再动手，因此遇到没练过的物体和环境时也更容易应对。",
       "sources": [
         {
           "label": "NVIDIA Technical Blog",
@@ -42,10 +42,10 @@
       ]
     },
     {
-      "category": "AI安全",
+      "category": "自动驾驶",
       "title": "NVIDIA Alpamayo 2 Super 生成轨迹和自动标签",
       "summary": "NVIDIA Alpamayo 2 Super 能够生成轨迹、推理痕迹和自动标签，提升自动驾驶车辆开发效率。",
-      "explanation": "NVIDIA Alpamayo 2 Super 能够生成轨迹、推理痕迹和自动标签，提升自动驾驶车辆开发效率。",
+      "explanation": "可以把它理解成自动驾驶训练资料的生产工具，能自动整理车辆怎么走、为什么这样走以及相应标签。",
       "sources": [
         {
           "label": "NVIDIA Technical Blog",

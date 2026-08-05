@@ -308,7 +308,7 @@ async function createDigestWithLocalModel({ candidates, coverageDate }, attempt 
     excerpt: candidate.summary.slice(0, 1200)
   }));
   const retryWarning = attempt > 1
-    ? "\n重要纠错：上一次输出包含过多英文。本次所有面向读者的字段必须使用简体中文，否则结果会被拒绝。\n"
+    ? "\n重要纠错：上一次输出未通过编辑质量检查。所有读者字段必须使用简体中文；通俗解释必须换一种日常表达，不能照抄、缩写或轻微改写总结。\n"
     : "";
   const prompt = `/no_think
 你是“全球 AI 资讯日报”的主编。下面是从官方博客、研究机构和 arXiv RSS/Atom 中抓取、日期与 ${coverageDate} 相符的候选内容。
@@ -319,7 +319,7 @@ async function createDigestWithLocalModel({ candidates, coverageDate }, attempt 
 3. 排除普通营销、融资、观点文章、活动预告和没有技术增量的内容。
 4. 不得增加候选内容没有提供的事实、数字或 URL；厂商自报结果须明确写成“官方称”或“尚待独立验证”。
 5. category、title、summary、explanation 必须全部使用简体中文；技术产品名可保留原文，但不得输出完整英文句子，title 必须包含中文说明。
-6. summary 用简洁中文说明“发生了什么、为什么重要、有什么限制”；explanation 用更通俗、尽量简短的中文解释。
+6. summary 用简洁中文说明“发生了什么、为什么重要、有什么限制”；explanation 要面向不了解 AI 的读者，用日常语言或恰当类比重新解释核心意义，尽量简短，不能复制、缩写或轻微改写 summary，也不要堆砌专业术语。
 7. 每条 sources 至少一个来源，url 必须原样复制候选内容中的 URL，label 使用对应来源名称。
 8. 只返回合法 JSON，不要 Markdown，不要前后说明。格式如下：
 {"items":[{"category":"分类","title":"标题","summary":"总结","explanation":"通俗解释","sources":[{"label":"来源名称","url":"候选 URL"}]}]}
@@ -372,13 +372,16 @@ ${JSON.stringify(compactCandidates)}
     };
   });
 
-  const languageProblems = findChineseLanguageProblems(items);
-  if (languageProblems.length) {
+  const qualityProblems = [
+    ...findChineseLanguageProblems(items),
+    ...findEditorialQualityProblems(items)
+  ];
+  if (qualityProblems.length) {
     if (attempt < 3) {
-      console.warn(`模型输出未满足中文要求，正在进行第 ${attempt + 1} 次生成：${languageProblems.join("；")}`);
+      console.warn(`模型输出未通过编辑质量检查，正在进行第 ${attempt + 1} 次生成：${qualityProblems.join("；")}`);
       return createDigestWithLocalModel({ candidates, coverageDate }, attempt + 1);
     }
-    throw new Error(`模型连续 3 次未满足中文要求，停止发布：${languageProblems.join("；")}`);
+    throw new Error(`模型连续 3 次未通过编辑质量检查，停止发布：${qualityProblems.join("；")}`);
   }
   return items;
 }
@@ -419,6 +422,47 @@ function findChineseLanguageProblems(items) {
     }
   }
   return problems;
+}
+
+function findEditorialQualityProblems(items) {
+  const problems = [];
+  for (const [index, item] of items.entries()) {
+    const summary = normalizeReaderText(item.summary);
+    const explanation = normalizeReaderText(item.explanation);
+    const similarity = textSimilarity(summary, explanation);
+    if (summary && explanation && (summary === explanation || similarity >= 0.72)) {
+      problems.push(`第 ${index + 1} 条通俗解释与总结相同或过于相似`);
+    }
+    if (summary && explanation.length > summary.length * 1.35) {
+      problems.push(`第 ${index + 1} 条通俗解释不够简洁`);
+    }
+  }
+  return problems;
+}
+
+function normalizeReaderText(value = "") {
+  return String(value).toLowerCase().replace(/[\s\p{P}\p{S}]+/gu, "");
+}
+
+function textSimilarity(left, right) {
+  if (!left || !right) return 0;
+  if (left === right) return 1;
+  if (left.length < 2 || right.length < 2) return 0;
+  const leftPairs = new Map();
+  for (let index = 0; index < left.length - 1; index += 1) {
+    const pair = left.slice(index, index + 2);
+    leftPairs.set(pair, (leftPairs.get(pair) || 0) + 1);
+  }
+  let overlap = 0;
+  for (let index = 0; index < right.length - 1; index += 1) {
+    const pair = right.slice(index, index + 2);
+    const remaining = leftPairs.get(pair) || 0;
+    if (remaining > 0) {
+      overlap += 1;
+      leftPairs.set(pair, remaining - 1);
+    }
+  }
+  return (2 * overlap) / (left.length + right.length - 2);
 }
 
 async function loadPreviouslyReportedUrls() {
@@ -478,6 +522,10 @@ function validateIssue(issue, allowedUrls = null) {
   const languageProblems = findChineseLanguageProblems(issue.items);
   if (languageProblems.length) {
     throw new Error(`生成结果必须使用简体中文：${languageProblems.join("；")}`);
+  }
+  const editorialProblems = findEditorialQualityProblems(issue.items);
+  if (editorialProblems.length) {
+    throw new Error(`生成结果未通过编辑质量检查：${editorialProblems.join("；")}`);
   }
   for (const [index, item] of issue.items.entries()) {
     for (const key of ["category", "title", "summary", "explanation"]) {
@@ -549,6 +597,11 @@ function runSelfTest() {
     explanation: "可以把它理解成一套帮助智能体练习和考试的通用工具。"
   }];
   if (findChineseLanguageProblems(chineseItem).length) throw new Error("自检失败：中文内容被错误拒绝。");
+  if (findEditorialQualityProblems(chineseItem).length) throw new Error("自检失败：合格的通俗解释被错误拒绝。");
+  const duplicatedExplanation = [{ ...chineseItem[0], explanation: chineseItem[0].summary }];
+  if (!findEditorialQualityProblems(duplicatedExplanation).length) throw new Error("自检失败：重复总结的解释未被拒绝。");
+  const lightlyRewordedExplanation = [{ ...chineseItem[0], explanation: "研究团队发布了用于复杂任务的开源智能体训练框架，并介绍了主要技术特点和使用限制。" }];
+  if (!findEditorialQualityProblems(lightlyRewordedExplanation).length) throw new Error("自检失败：轻微改写总结的解释未被拒绝。");
   const englishItem = [{
     category: "Agent",
     title: "An open framework for scalable agentic AI",

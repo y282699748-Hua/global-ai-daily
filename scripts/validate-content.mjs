@@ -36,6 +36,10 @@ function validateIssue(issue, file) {
     if (languageProblems.length) {
       throw new Error(`${file}: 第 ${index + 1} 条必须使用简体中文（${languageProblems.join("、")}）。`);
     }
+    const editorialProblems = findEditorialQualityProblems(item);
+    if (editorialProblems.length) {
+      throw new Error(`${file}: 第 ${index + 1} 条未通过编辑质量检查（${editorialProblems.join("、")}）。`);
+    }
     if (!Array.isArray(item.sources) || !item.sources.length) {
       throw new Error(`${file}: 第 ${index + 1} 条至少需要一个来源。`);
     }
@@ -63,4 +67,41 @@ function findChineseLanguageProblems(item) {
     if (han < requirement.minHan || share < requirement.minShare) problems.push(key);
   }
   return problems;
+}
+function findEditorialQualityProblems(item) {
+  const summary = normalizeReaderText(item.summary);
+  const explanation = normalizeReaderText(item.explanation);
+  const problems = [];
+  if (summary && explanation && (summary === explanation || textSimilarity(summary, explanation) >= 0.72)) {
+    problems.push("通俗解释与总结相同或过于相似");
+  }
+  if (summary && explanation.length > summary.length * 1.35) {
+    problems.push("通俗解释不够简洁");
+  }
+  return problems;
+}
+
+function normalizeReaderText(value = "") {
+  return String(value).toLowerCase().replace(/[\s\p{P}\p{S}]+/gu, "");
+}
+
+function textSimilarity(left, right) {
+  if (!left || !right) return 0;
+  if (left === right) return 1;
+  if (left.length < 2 || right.length < 2) return 0;
+  const leftPairs = new Map();
+  for (let index = 0; index < left.length - 1; index += 1) {
+    const pair = left.slice(index, index + 2);
+    leftPairs.set(pair, (leftPairs.get(pair) || 0) + 1);
+  }
+  let overlap = 0;
+  for (let index = 0; index < right.length - 1; index += 1) {
+    const pair = right.slice(index, index + 2);
+    const remaining = leftPairs.get(pair) || 0;
+    if (remaining > 0) {
+      overlap += 1;
+      leftPairs.set(pair, remaining - 1);
+    }
+  }
+  return (2 * overlap) / (left.length + right.length - 2);
 }
