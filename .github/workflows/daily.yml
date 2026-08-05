@@ -2,12 +2,11 @@ name: 生成 AI 日报
 
 on:
   schedule:
-    # Start before 09:00 and avoid the top-of-hour GitHub Actions queue.
-    - cron: "40 8 * * 1-5"
-      timezone: "Asia/Shanghai"
+    # 08:50 Asia/Shanghai (UTC+8). Use UTC cron for scheduler compatibility.
+    - cron: "50 0 * * 1-5"
     # Fallback run. It exits early when the first run already published today.
-    - cron: "15 9 * * 1-5"
-      timezone: "Asia/Shanghai"
+    # 09:10 Asia/Shanghai (UTC+8).
+    - cron: "10 1 * * 1-5"
   workflow_dispatch:
     inputs:
       date:
