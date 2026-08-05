@@ -1,0 +1,57 @@
+{
+  "date": "2026-08-05",
+  "label": "08.05",
+  "year": "2026",
+  "coverageDate": "2026-08-04",
+  "coverageLabel": "08.04",
+  "items": [
+    {
+      "category": "AI安全",
+      "title": "OpenAI 推出第三方网络安全评估计划",
+      "summary": "OpenAI 近期进行了第三方网络安全评估，并介绍了新的安全措施以加强 AI 模型的测试和评估。",
+      "explanation": "OpenAI 近期进行了第三方网络安全评估，并介绍了新的安全措施以加强 AI 模型的测试和评估。",
+      "sources": [
+        {
+          "label": "OpenAI News",
+          "url": "https://openai.com/index/third-party-cyber-evaluations-involving-openai-models"
+        }
+      ]
+    },
+    {
+      "category": "智能体",
+      "title": "Amazon Bedrock 推出 Web 搜索功能",
+      "summary": "Amazon Bedrock 推出 Web 搜索功能，使模型响应能够基于当前网络知识进行 grounding。",
+      "explanation": "Amazon Bedrock 推出 Web 搜索功能，使模型响应能够基于当前网络知识进行 grounding。",
+      "sources": [
+        {
+          "label": "AWS Machine Learning Blog",
+          "url": "https://aws.amazon.com/blogs/machine-learning/introducing-web-search-on-amazon-bedrock-for-foundation-model-grounding/"
+        }
+      ]
+    },
+    {
+      "category": "AI安全",
+      "title": "NVIDIA 世界动作模型重塑机器人操作",
+      "summary": "NVIDIA 介绍了一种新的世界动作模型，该模型能够重塑机器人操作，解决机器人在训练场景外泛化的问题。",
+      "explanation": "NVIDIA 介绍了一种新的世界动作模型，该模型能够重塑机器人操作，解决机器人在训练场景外泛化的问题。",
+      "sources": [
+        {
+          "label": "NVIDIA Technical Blog",
+          "url": "https://developer.nvidia.com/blog/beyond-vlas-how-world-action-models-reshape-robot-manipulation/"
+        }
+      ]
+    },
+    {
+      "category": "AI安全",
+      "title": "NVIDIA Alpamayo 2 Super 生成轨迹和自动标签",
+      "summary": "NVIDIA Alpamayo 2 Super 能够生成轨迹、推理痕迹和自动标签，提升自动驾驶车辆开发效率。",
+      "explanation": "NVIDIA Alpamayo 2 Super 能够生成轨迹、推理痕迹和自动标签，提升自动驾驶车辆开发效率。",
+      "sources": [
+        {
+          "label": "NVIDIA Technical Blog",
+          "url": "https://developer.nvidia.com/blog/generate-trajectories-reasoning-traces-and-auto-labels-with-nvidia-alpamayo-2-super/"
+        }
+      ]
+    }
+  ]
+}
