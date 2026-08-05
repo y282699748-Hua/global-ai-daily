@@ -72,6 +72,12 @@ function findEditorialQualityProblems(item) {
   const summary = normalizeReaderText(item.summary);
   const explanation = normalizeReaderText(item.explanation);
   const problems = [];
+  if (summary.length < 90) {
+    problems.push("总结信息量不足");
+  }
+  if (summary.length > 260) {
+    problems.push("总结过长");
+  }
   if (summary && explanation && (summary === explanation || textSimilarity(summary, explanation) >= 0.72)) {
     problems.push("通俗解释与总结相同或过于相似");
   }

@@ -1,4 +1,5 @@
 import { appendFile, mkdir, readFile, readdir, writeFile } from "node:fs/promises";
+import http from "node:http";
 import path from "node:path";
 
 const root = process.cwd();
@@ -97,7 +98,7 @@ async function finalizeIssue(items, candidates, model) {
     items
   };
 
-  validateIssue(issue, new Set(candidates.map((candidate) => canonicalUrl(candidate.url))));
+  validateIssue(issue, candidates);
   await writeOutputs(issue);
   console.log(`已生成 ${issue.label} 日报，共 ${issue.items.length} 条，模型：${model}。`);
 }
@@ -127,15 +128,14 @@ async function collectCandidates(targetDate, previouslyReportedUrls) {
     if (!unique.has(key)) unique.set(key, candidate);
   }
 
-  const shortlist = [...unique.values()].slice(0, 18).map(({ score, ...candidate }) => candidate);
+  const shortlist = [...unique.values()].slice(0, 12).map(({ score, ...candidate }) => candidate);
   const candidates = await Promise.all(shortlist.map(enrichCandidate));
   return { candidates, failures };
 }
 
 async function enrichCandidate(candidate) {
-  if (candidate.summary.length >= 120) return candidate;
   const controller = new AbortController();
-  const timer = setTimeout(() => controller.abort(), 12000);
+  const timer = setTimeout(() => controller.abort(), 15000);
   try {
     const response = await fetch(candidate.url, {
       headers: { "User-Agent": "global-ai-daily/1.0 (+https://github.com/y282699748-Hua/global-ai-daily)" },
@@ -146,14 +146,18 @@ async function enrichCandidate(candidate) {
     if (!contentType.includes("html")) return candidate;
     const html = await response.text();
     const metaDescription = extractMetaDescription(html);
-    const article = html.match(/<article\b[^>]*>([\s\S]*?)<\/article>/i)?.[1] || "";
-    const paragraphs = [...article.matchAll(/<p\b[^>]*>([\s\S]*?)<\/p>/gi)]
+    const scope = html.match(/<article\b[^>]*>([\s\S]*?)<\/article>/i)?.[1]
+      || html.match(/<main\b[^>]*>([\s\S]*?)<\/main>/i)?.[1]
+      || html;
+    const blocks = [...scope.matchAll(/<(?:p|li)\b[^>]*>([\s\S]*?)<\/(?:p|li)>/gi)]
       .map((match) => cleanText(match[1]))
-      .filter((text) => text.length >= 40)
-      .slice(0, 3)
-      .join(" ");
-    const summary = (metaDescription || paragraphs).slice(0, 1800);
-    return summary ? { ...candidate, summary } : candidate;
+      .filter((text) => text.length >= 40);
+    const combinedSource = [candidate.summary, metaDescription, ...blocks].filter(Boolean).join(" ");
+    const evidence = extractEvidenceSnippets(combinedSource).join(" ").slice(0, 1600);
+    const selectedBlocks = [...new Set([...blocks.slice(0, 6), ...blocks.filter(hasQuantitativeEvidence).slice(0, 6)])];
+    const evidenceText = selectedBlocks.join(" ");
+    const enriched = [...new Set([evidence, candidate.summary, metaDescription, evidenceText].filter(Boolean))].join(" ").slice(0, 3600);
+    return enriched ? { ...candidate, summary: enriched, evidence } : candidate;
   } catch {
     return candidate;
   } finally {
@@ -297,46 +301,113 @@ function scoreCandidate(entry, source) {
   return score;
 }
 
-async function createDigestWithLocalModel({ candidates, coverageDate }, attempt = 1) {
-  const allowedSources = new Map(candidates.map((candidate) => [canonicalUrl(candidate.url), candidate]));
+async function createDigestWithLocalModel({ candidates, coverageDate }) {
+  const selectedCandidates = await selectCandidatesWithLocalModel(candidates, coverageDate);
+  const items = [];
+  for (const [index, candidate] of selectedCandidates.entries()) {
+    try {
+      items.push(await createItemWithLocalModel(candidate, coverageDate, index + 1));
+    } catch (error) {
+      console.warn(`跳过连续未通过质量检查的候选：${candidate.title}（${conciseError(error)}）`);
+    }
+  }
+  return items;
+}
+
+async function selectCandidatesWithLocalModel(candidates, coverageDate, attempt = 1) {
   const compactCandidates = candidates.map((candidate, index) => ({
     id: index + 1,
     title: candidate.title,
     publishedAt: candidate.publishedAt,
     source: candidate.sourceLabel,
-    url: candidate.url,
-    excerpt: candidate.summary.slice(0, 1200)
+    excerpt: candidate.summary.slice(0, 900)
   }));
+  const prompt = `/no_think
+你是“全球 AI 资讯日报”的选题编辑。候选内容来自官方博客、研究机构和 arXiv，日期与 ${coverageDate} 相符。
+只完成选题，不撰写日报：选择 0–5 条真正重要的 AI 技术进展，并按重要性、技术先进性和行业影响从高到低排列。优先模型与算法突破、智能体、训练/推理系统、芯片与基础设施、AI 安全、开放标准及高可信研究；排除普通营销、融资、观点文章和没有技术增量的内容。
+只返回合法 JSON：{"selected":[候选 id]}
+候选内容：
+${JSON.stringify(compactCandidates)}`.trim();
+
+  try {
+    const parsed = await requestJsonFromLocalModel(prompt, { temperature: 0.05, maxTokens: 300 });
+    if (!Array.isArray(parsed.selected)) throw new Error("选题结果缺少 selected 数组。");
+    const ids = [...new Set(parsed.selected.map(Number))];
+    if (ids.length > 5 || ids.some((id) => !Number.isInteger(id) || id < 1 || id > candidates.length)) {
+      throw new Error("选题结果包含无效候选编号。");
+    }
+    return ids.map((id) => candidates[id - 1]);
+  } catch (error) {
+    if (attempt < 2) {
+      console.warn(`选题输出无效，正在重试：${conciseError(error)}`);
+      return selectCandidatesWithLocalModel(candidates, coverageDate, attempt + 1);
+    }
+    throw error;
+  }
+}
+
+async function createItemWithLocalModel(candidate, coverageDate, rank, attempt = 1) {
   const retryWarning = attempt > 1
-    ? "\n重要纠错：上一次输出未通过编辑质量检查。所有读者字段必须使用简体中文；通俗解释必须换一种日常表达，不能照抄、缩写或轻微改写总结。\n"
+    ? "\n重要纠错：上一次输出未通过质量检查。summary 必须达到规定的信息量，并保留材料中的关键数字、适用条件和限制；explanation 必须换成日常表达，不能照抄总结。\n"
     : "";
   const prompt = `/no_think
-你是“全球 AI 资讯日报”的主编。下面是从官方博客、研究机构和 arXiv RSS/Atom 中抓取、日期与 ${coverageDate} 相符的候选内容。
-
-请严格只依据候选内容工作：
-1. 选择 0–5 条真正重要的 AI 技术进展，按重要性、技术先进性和行业影响从高到低排序；宁缺毋滥。
-2. 优先模型与算法突破、智能体、训练/推理系统、芯片与基础设施、AI 安全、开放标准及高可信研究。
-3. 排除普通营销、融资、观点文章、活动预告和没有技术增量的内容。
-4. 不得增加候选内容没有提供的事实、数字或 URL；厂商自报结果须明确写成“官方称”或“尚待独立验证”。
-5. category、title、summary、explanation 必须全部使用简体中文；技术产品名可保留原文，但不得输出完整英文句子，title 必须包含中文说明。
-6. summary 用简洁中文说明“发生了什么、为什么重要、有什么限制”；explanation 要面向不了解 AI 的读者，用日常语言或恰当类比重新解释核心意义，尽量简短，不能复制、缩写或轻微改写 summary，也不要堆砌专业术语。
-7. 每条 sources 至少一个来源，url 必须原样复制候选内容中的 URL，label 使用对应来源名称。
-8. 只返回合法 JSON，不要 Markdown，不要前后说明。格式如下：
-{"items":[{"category":"分类","title":"标题","summary":"总结","explanation":"通俗解释","sources":[{"label":"来源名称","url":"候选 URL"}]}]}
+你是“全球 AI 资讯日报”的中文科技编辑。请把下面第 ${rank} 条入选资讯写成一条日报，只能使用给定材料，不得增加材料中没有的事实或数字。
+1. category、title、summary、explanation 全部使用简体中文；产品名可以保留原文，但不要输出完整英文句子。
+2. summary 写成 120–220 个中文字符、2–4 句，说明技术机制或主要变化、重要性以及适用条件或限制。
+3. 材料含百分比、参数规模、基准成绩、成本、速度、数据规模或覆盖范围时，至少保留一个最重要的阿拉伯数字及其单位；厂商自报结果写明“官方称”或“仍需独立验证”。材料没有可靠量化结果时，明确说明“原文未给出可比较的量化结果”，绝不编造。
+4. explanation 面向不了解 AI 的读者，用日常语言或恰当类比简短解释核心意义，不能复制、缩写或轻微改写 summary。
+5. 只返回合法 JSON，不要 Markdown：{"item":{"category":"分类","title":"标题","summary":"总结","explanation":"通俗解释"}}
 ${retryWarning}
+材料：
+${JSON.stringify({
+    title: candidate.title,
+    publishedAt: candidate.publishedAt,
+    source: candidate.sourceLabel,
+    url: candidate.url,
+    quantitativeEvidence: candidate.evidence || "原文未提取到明确量化信息",
+    excerpt: candidate.summary.slice(0, 1800)
+  })}`.trim();
 
-候选内容：
-${JSON.stringify(compactCandidates)}
-`.trim();
+  try {
+    const parsed = await requestJsonFromLocalModel(prompt, {
+      temperature: attempt === 1 ? 0.15 : 0.05,
+      maxTokens: 1400
+    });
+    const rawItem = parsed.item || parsed.items?.[0];
+    if (!rawItem || typeof rawItem !== "object") throw new Error("模型返回结果缺少 item 对象。");
+    const item = {
+      category: String(rawItem.category || "").trim(),
+      title: String(rawItem.title || "").trim(),
+      summary: String(rawItem.summary || "").trim(),
+      explanation: String(rawItem.explanation || "").trim(),
+      sources: [{ label: candidate.sourceLabel, url: candidate.url }]
+    };
+    const sourceLookup = new Map([[canonicalUrl(candidate.url), candidate]]);
+    const qualityProblems = [
+      ...findChineseLanguageProblems([item]),
+      ...findEditorialQualityProblems([item]),
+      ...findEvidenceCoverageProblems([item], sourceLookup)
+    ];
+    if (qualityProblems.length) throw new Error(qualityProblems.join("；"));
+    return item;
+  } catch (error) {
+    if (attempt < 3) {
+      console.warn(`第 ${rank} 条未通过质量检查，正在进行第 ${attempt + 1} 次生成：${conciseError(error)}`);
+      return createItemWithLocalModel(candidate, coverageDate, rank, attempt + 1);
+    }
+    throw new Error(`第 ${rank} 条连续 3 次未通过质量检查：${conciseError(error)}`);
+  }
+}
 
+async function requestJsonFromLocalModel(prompt, { temperature, maxTokens }) {
   const body = {
     model: "Qwen3-4B-Q4_K_M.gguf",
     messages: [
       { role: "system", content: "你是严谨的中文科技编辑。只使用给定证据，输出合法 JSON。" },
       { role: "user", content: prompt }
     ],
-    temperature: attempt === 1 ? 0.2 : 0.05,
-    max_tokens: 3000,
+    temperature,
+    max_tokens: maxTokens,
     response_format: { type: "json_object" }
   };
 
@@ -350,47 +421,39 @@ ${JSON.stringify(compactCandidates)}
   if (!response.ok) {
     throw new Error(`本地开源模型推理失败（${response.status}）：${await response.text()}`);
   }
-
   const payload = await response.json();
   const content = payload.choices?.[0]?.message?.content;
   if (typeof content !== "string" || !content.trim()) throw new Error("本地开源模型未返回可解析的正文。");
-  const parsed = JSON.parse(extractJsonObject(content));
-  if (!Array.isArray(parsed.items)) throw new Error("本地开源模型返回结果缺少 items 数组。");
-
-  const items = parsed.items.map((item, index) => {
-    const sources = (item.sources || []).map((source) => {
-      const candidate = allowedSources.get(canonicalUrl(source.url));
-      if (!candidate) throw new Error(`第 ${index + 1} 条引用了候选列表之外的来源：${source.url}`);
-      return { label: candidate.sourceLabel, url: candidate.url };
-    });
-    return {
-      category: String(item.category || "").trim(),
-      title: String(item.title || "").trim(),
-      summary: String(item.summary || "").trim(),
-      explanation: String(item.explanation || "").trim(),
-      sources
-    };
-  });
-
-  const qualityProblems = [
-    ...findChineseLanguageProblems(items),
-    ...findEditorialQualityProblems(items)
-  ];
-  if (qualityProblems.length) {
-    if (attempt < 3) {
-      console.warn(`模型输出未通过编辑质量检查，正在进行第 ${attempt + 1} 次生成：${qualityProblems.join("；")}`);
-      return createDigestWithLocalModel({ candidates, coverageDate }, attempt + 1);
-    }
-    throw new Error(`模型连续 3 次未通过编辑质量检查，停止发布：${qualityProblems.join("；")}`);
-  }
-  return items;
+  return JSON.parse(extractJsonObject(content));
 }
-
 function requestLocalInference(body) {
-  return fetch(localLlmUrl, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(body)
+  return new Promise((resolve, reject) => {
+    const payload = JSON.stringify(body);
+    const endpoint = new URL(localLlmUrl);
+    const request = http.request(endpoint, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Content-Length": Buffer.byteLength(payload)
+      },
+      timeout: 5 * 60 * 1000
+    }, (response) => {
+      const chunks = [];
+      response.on("data", (chunk) => chunks.push(chunk));
+      response.on("end", () => {
+        const text = Buffer.concat(chunks).toString("utf8");
+        const status = response.statusCode || 0;
+        resolve({
+          ok: status >= 200 && status < 300,
+          status,
+          text: async () => text,
+          json: async () => JSON.parse(text)
+        });
+      });
+    });
+    request.on("timeout", () => request.destroy(new Error("本地开源模型单批推理超过 5 分钟。")));
+    request.on("error", reject);
+    request.end(payload);
   });
 }
 
@@ -430,6 +493,12 @@ function findEditorialQualityProblems(items) {
     const summary = normalizeReaderText(item.summary);
     const explanation = normalizeReaderText(item.explanation);
     const similarity = textSimilarity(summary, explanation);
+    if (summary.length < 90) {
+      problems.push(`第 ${index + 1} 条总结信息量不足`);
+    }
+    if (summary.length > 260) {
+      problems.push(`第 ${index + 1} 条总结过长`);
+    }
     if (summary && explanation && (summary === explanation || similarity >= 0.72)) {
       problems.push(`第 ${index + 1} 条通俗解释与总结相同或过于相似`);
     }
@@ -438,6 +507,69 @@ function findEditorialQualityProblems(items) {
     }
   }
   return problems;
+}
+
+function findEvidenceCoverageProblems(items, sourceLookup) {
+  if (!sourceLookup) return [];
+  const problems = [];
+  for (const [index, item] of items.entries()) {
+    const sourceTexts = (item.sources || [])
+      .map((source) => {
+        const candidate = sourceLookup.get(canonicalUrl(source.url));
+        return candidate ? `${candidate.evidence || ""} ${candidate.summary || ""}` : "";
+      })
+      .filter(Boolean);
+    const evidenceNumbers = new Set(sourceTexts.flatMap(extractEvidenceNumbers));
+    const summaryNumbers = new Set(extractEvidenceNumbers(item.summary));
+    if (evidenceNumbers.size && ![...summaryNumbers].some((value) => evidenceNumbers.has(value))) {
+      problems.push(`第 ${index + 1} 条遗漏了来源中的关键量化数据`);
+      continue;
+    }
+    if (!evidenceNumbers.size && sourceTexts.some(hasWrittenScale) && !hasQuantitativeEvidence(item.summary)) {
+      problems.push(`第 ${index + 1} 条遗漏了来源中的数据规模或覆盖范围`);
+    }
+  }
+  return problems;
+}
+
+function extractEvidenceSnippets(text = "") {
+  const sentences = String(text).match(/[^.!?。！？;；]+[.!?。！？;；]?/gu) || [];
+  return [...new Set(sentences.map((sentence) => sentence.trim()).filter((sentence) => sentence.length >= 25 && hasQuantitativeEvidence(sentence)))].slice(0, 6);
+}
+
+function hasQuantitativeEvidence(text = "") {
+  return extractEvidenceNumbers(text).length > 0 || hasWrittenScale(text);
+}
+
+function hasWrittenScale(text = "") {
+  return /\b(?:hundreds? of )?(?:billions?|millions?|thousands?)\b|数十亿|数亿|数百万|数十万|数万|数千|数百/iu.test(String(text));
+}
+
+function extractEvidenceNumbers(text = "") {
+  const value = String(text);
+  const numbers = [];
+  for (const match of value.matchAll(/\d[\d,]*(?:\.\d+)?/g)) {
+    const raw = match[0];
+    const numeric = Number(raw.replace(/,/g, ""));
+    if (!Number.isFinite(numeric)) continue;
+    if (numeric >= 2000 && numeric <= 2099 && raw.length === 4) continue;
+    const before = value.slice(Math.max(0, match.index - 12), match.index);
+    const after = value.slice(match.index + raw.length, match.index + raw.length + 24);
+    const unitText = after.replace(/^\s*(?:[-–—]\s*)?/, "").toLowerCase();
+    const hasUnit = /[$€£¥￥]\s*$/u.test(before)
+      || /^(?:%|％|x|×|[kmb]\b|billions?|millions?|thousands?|千|万|亿|百|百万|十亿|参数|tokens?|queries|images?|videos?|samples?|actions?|cameras?|hz|fps|ms|s\b|meters?|m\b|gb|tb|美元|次|项|个|张|段|小时)/iu.test(unitText);
+    if (hasUnit || numeric >= 10 || raw.includes(".") || raw.includes(",")) {
+      numbers.push(String(numeric));
+      const factor = /^(?:billions?|b\b|十亿)/iu.test(unitText) ? 1e9
+        : /^(?:millions?|m\b|百万)/iu.test(unitText) ? 1e6
+          : /^(?:thousands?|k\b|千)/iu.test(unitText) ? 1e3
+            : /^亿/u.test(unitText) ? 1e8
+              : /^万/u.test(unitText) ? 1e4
+                : 1;
+      if (factor > 1) numbers.push(String(numeric * factor));
+    }
+  }
+  return [...new Set(numbers)];
 }
 
 function normalizeReaderText(value = "") {
@@ -514,7 +646,10 @@ async function writeOutputs(issue) {
 
 }
 
-function validateIssue(issue, allowedUrls = null) {
+function validateIssue(issue, candidates = null) {
+  const allowedSources = Array.isArray(candidates)
+    ? new Map(candidates.map((candidate) => [canonicalUrl(candidate.url), candidate]))
+    : null;
   if (!Array.isArray(issue.items) || issue.items.length > 5) {
     throw new Error("生成结果必须包含 0–5 条日报。");
   }
@@ -523,7 +658,10 @@ function validateIssue(issue, allowedUrls = null) {
   if (languageProblems.length) {
     throw new Error(`生成结果必须使用简体中文：${languageProblems.join("；")}`);
   }
-  const editorialProblems = findEditorialQualityProblems(issue.items);
+  const editorialProblems = [
+    ...findEditorialQualityProblems(issue.items),
+    ...findEvidenceCoverageProblems(issue.items, allowedSources)
+  ];
   if (editorialProblems.length) {
     throw new Error(`生成结果未通过编辑质量检查：${editorialProblems.join("；")}`);
   }
@@ -539,7 +677,7 @@ function validateIssue(issue, allowedUrls = null) {
     for (const source of item.sources) {
       const url = canonicalUrl(source.url);
       if (!source.label || !/^https?:\/\//.test(source.url)) throw new Error(`第 ${index + 1} 条存在无效来源。`);
-      if (allowedUrls && !allowedUrls.has(url)) throw new Error(`第 ${index + 1} 条存在候选列表之外的来源。`);
+      if (allowedSources && !allowedSources.has(url)) throw new Error(`第 ${index + 1} 条存在候选列表之外的来源。`);
       if (seenUrls.has(url)) throw new Error(`第 ${index + 1} 条与前文重复引用同一进展。`);
       seenUrls.add(url);
     }
@@ -593,15 +731,24 @@ function runSelfTest() {
   const chineseItem = [{
     category: "智能体",
     title: "开源智能体训练框架取得新进展",
-    summary: "研究团队发布了面向复杂任务的开源智能体训练框架，并说明了主要技术特点和适用限制。",
+    summary: "研究团队发布了面向复杂任务的开源智能体训练框架。该框架统一任务环境、训练流程和评测接口，可用于软件工程及网页操作等场景。官方测试显示核心基准达到 69.7%，但结果来自项目方披露，仍需在更多任务和独立环境中验证。",
     explanation: "可以把它理解成一套帮助智能体练习和考试的通用工具。"
   }];
   if (findChineseLanguageProblems(chineseItem).length) throw new Error("自检失败：中文内容被错误拒绝。");
   if (findEditorialQualityProblems(chineseItem).length) throw new Error("自检失败：合格的通俗解释被错误拒绝。");
   const duplicatedExplanation = [{ ...chineseItem[0], explanation: chineseItem[0].summary }];
   if (!findEditorialQualityProblems(duplicatedExplanation).length) throw new Error("自检失败：重复总结的解释未被拒绝。");
-  const lightlyRewordedExplanation = [{ ...chineseItem[0], explanation: "研究团队发布了用于复杂任务的开源智能体训练框架，并介绍了主要技术特点和使用限制。" }];
-  if (!findEditorialQualityProblems(lightlyRewordedExplanation).length) throw new Error("自检失败：轻微改写总结的解释未被拒绝。");
+  const lightlyRewordedExplanation = [{ ...chineseItem[0], explanation: chineseItem[0].summary.replace("统一", "整合") }];
+  if (!findEditorialQualityProblems(lightlyRewordedExplanation).some((problem) => problem.includes("过于相似"))) throw new Error("自检失败：轻微改写总结的解释未被拒绝。");
+  const evidenceUrl = "https://example.com/evidence";
+  const evidenceSources = new Map([[evidenceUrl, { summary: "Official benchmark score reached 69.7% with 3 billion active parameters." }]]);
+  const evidenceItem = [{ ...chineseItem[0], sources: [{ label: "Fixture", url: evidenceUrl }] }];
+  if (findEvidenceCoverageProblems(evidenceItem, evidenceSources).length) throw new Error("自检失败：已保留的数据被错误判定为遗漏。");
+  const missingEvidenceItem = [{ ...evidenceItem[0], summary: evidenceItem[0].summary.replace("69.7%", "较好成绩") }];
+  if (!findEvidenceCoverageProblems(missingEvidenceItem, evidenceSources).length) throw new Error("自检失败：来源中的关键数据遗漏后未被拒绝。");
+  const scaledEvidenceSources = new Map([[evidenceUrl, { summary: "The dataset contains 2 billion tokens." }]]);
+  const scaledEvidenceItem = [{ ...evidenceItem[0], summary: evidenceItem[0].summary.replace("69.7%", "20 亿个 token") }];
+  if (findEvidenceCoverageProblems(scaledEvidenceItem, scaledEvidenceSources).length) throw new Error("自检失败：中英文单位换算后的数据未被识别。");
   const englishItem = [{
     category: "Agent",
     title: "An open framework for scalable agentic AI",
