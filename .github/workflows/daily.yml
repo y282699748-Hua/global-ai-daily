@@ -2,11 +2,17 @@ name: 生成 AI 日报
 
 on:
   schedule:
-    # 08:50 Asia/Shanghai (UTC+8). Use UTC cron for scheduler compatibility.
+    # GitHub scheduled workflows may be delayed or occasionally dropped.
+    # Check repeatedly at staggered times; after one run publishes the issue,
+    # later runs exit early in "Check whether today's issue already exists".
+    # Asia/Shanghai 08:50 and 08:58 (UTC+8).
     - cron: "50 0 * * 1-5"
-    # Fallback run. It exits early when the first run already published today.
-    # 09:10 Asia/Shanghai (UTC+8).
+    - cron: "58 0 * * 1-5"
+    # Asia/Shanghai 09:10, 09:22, 09:34 and 09:46 (UTC+8).
     - cron: "10 1 * * 1-5"
+    - cron: "22 1 * * 1-5"
+    - cron: "34 1 * * 1-5"
+    - cron: "46 1 * * 1-5"
   workflow_dispatch:
     inputs:
       date:
