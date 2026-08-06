@@ -2,17 +2,8 @@ name: 生成 AI 日报
 
 on:
   schedule:
-    # GitHub scheduled workflows may be delayed or occasionally dropped.
-    # Check repeatedly at staggered times; after one run publishes the issue,
-    # later runs exit early in "Check whether today's issue already exists".
-    # Asia/Shanghai 08:50 and 08:58 (UTC+8).
+    # 08:50 Asia/Shanghai (UTC+8). Cloudflare independently checks at 09:00.
     - cron: "50 0 * * 1-5"
-    - cron: "58 0 * * 1-5"
-    # Asia/Shanghai 09:10, 09:22, 09:34 and 09:46 (UTC+8).
-    - cron: "10 1 * * 1-5"
-    - cron: "22 1 * * 1-5"
-    - cron: "34 1 * * 1-5"
-    - cron: "46 1 * * 1-5"
   workflow_dispatch:
     inputs:
       date:
@@ -21,6 +12,11 @@ on:
         type: string
       test_only:
         description: "仅测试完整流程，不提交日报"
+        required: false
+        default: false
+        type: boolean
+      skip_if_exists:
+        description: "当天日报已存在时跳过（供 Cloudflare 兜底调用）"
         required: false
         default: false
         type: boolean
@@ -43,15 +39,16 @@ jobs:
         id: issue
         env:
           INPUT_DATE: ${{ inputs.date }}
+          SKIP_IF_EXISTS: ${{ inputs.skip_if_exists }}
         run: |
           report_date="$INPUT_DATE"
           if [ -z "$report_date" ]; then
             report_date="$(TZ=Asia/Shanghai date +%F)"
           fi
           echo "report_date=$report_date" >> "$GITHUB_OUTPUT"
-          if [ "$GITHUB_EVENT_NAME" = "schedule" ] && [ -f "site/data/issues/$report_date.json" ]; then
+          if { [ "$GITHUB_EVENT_NAME" = "schedule" ] || [ "$SKIP_IF_EXISTS" = "true" ]; } && [ -f "site/data/issues/$report_date.json" ]; then
             echo "needs_generation=false" >> "$GITHUB_OUTPUT"
-            echo "$report_date already exists; skipping fallback generation."
+            echo "$report_date already exists; skipping generation."
           else
             echo "needs_generation=true" >> "$GITHUB_OUTPUT"
           fi
