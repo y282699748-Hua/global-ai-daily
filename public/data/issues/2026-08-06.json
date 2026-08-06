@@ -1,0 +1,45 @@
+{
+  "date": "2026-08-06",
+  "label": "08.06",
+  "year": "2026",
+  "coverageDate": "2026-08-05",
+  "coverageLabel": "08.05",
+  "items": [
+    {
+      "category": "AI模型评估",
+      "title": "SciCode-Verified：语言模型科学编码能力的重新评估",
+      "summary": "一项针对语言模型科学编码能力的基准测试发现，原有评估存在263个缺陷，其中192个缺陷导致正确解法被错误拒绝。这些缺陷需要专业知识才能发现，而非简单校对。修正后，模型的子问题准确率从45-60%提升至84-98%，主问题准确率从9-27%提升至69-92%。原文未给出可比较的量化结果",
+      "explanation": "这项研究发现，之前用来评估语言模型科学编码能力的测试存在很多问题，导致结果不准确。通过仔细检查，发现很多错误是由于测试本身的问题，而不是模型本身的能力不足。修正后，测试结果有了显著提升。",
+      "sources": [
+        {
+          "label": "arXiv AI/ML/CL/CV",
+          "url": "https://arxiv.org/abs/2608.04975v1"
+        }
+      ]
+    },
+    {
+      "category": "人工智能应用",
+      "title": "LendingTree 基于 Amazon Bedrock 构建多智能体房贷助手",
+      "summary": "LendingTree 使用 Amazon Bedrock 的多智能体系统，通过 LangGraph 和 Amazon Nova 模型提供全天候房贷指导。系统能处理购房或 refinancing、15 年或 30 年贷款期限、固定或浮动利率等复杂选择。平均每次对话持续 9 分钟，涉及 10+ 条消息，帮助用户逐步明确贷款需求。原文未给出可比较的量化结果",
+      "explanation": "这个系统像一个智能助手，能持续和用户对话，帮助他们一步步理清买房或贷款的复杂选择，就像在做财务规划时，助手会不断询问细节，最终给出合适的建议。",
+      "sources": [
+        {
+          "label": "AWS Machine Learning Blog",
+          "url": "https://aws.amazon.com/blogs/machine-learning/how-lendingtree-built-a-multi-agent-mortgage-assistant-on-amazon-bedrock/"
+        }
+      ]
+    },
+    {
+      "category": "AI应用",
+      "title": "符合欧盟AI法案要求的短期负荷预测挑战结果",
+      "summary": "该研究在41天的实时挑战中验证了基于开源库spotforecast2-safe的短期负荷预测管道，该管道符合欧盟AI法案对安全关键环境的要求。本地模型macl2l在成本和可审计性方面具有优势，可与参数超过1亿的大型预训练模型竞争。",
+      "explanation": "这项研究展示了如何在电力行业使用AI技术预测电力需求，同时确保系统符合严格的法规要求，就像在医院或机场等关键设施中使用AI一样，必须保证其可靠性和可追溯性。",
+      "sources": [
+        {
+          "label": "arXiv AI/ML/CL/CV",
+          "url": "https://arxiv.org/abs/2608.05018v1"
+        }
+      ]
+    }
+  ]
+}
