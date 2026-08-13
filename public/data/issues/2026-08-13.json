@@ -1,0 +1,45 @@
+{
+  "date": "2026-08-13",
+  "label": "08.13",
+  "year": "2026",
+  "coverageDate": "2026-08-12",
+  "coverageLabel": "08.12",
+  "items": [
+    {
+      "category": "人工智能",
+      "title": "将手语AI带入用户手中",
+      "summary": "谷歌DeepMind开发的SL2T模型通过训练超过10万小时的手语数据，支持超过50种手语，其中ASL数据占四分之一。该模型在零样本测试中取得70 BLEURT分数，显著高于以往结果。但实际应用中仍需优化延迟、防止非手语输入的幻觉等问题。",
+      "explanation": "这项技术能让手语使用者通过手机输入文字，就像打字一样方便，但目前主要针对美国手语和英语，未来可能扩展到更多语言。",
+      "sources": [
+        {
+          "label": "Google DeepMind",
+          "url": "https://deepmind.google/blog/putting-sign-language-ai-into-users-hands/"
+        }
+      ]
+    },
+    {
+      "category": "AI模型",
+      "title": "NVIDIA推出支持可配置推理的4T参数模型",
+      "summary": "该模型拥有2.4万亿参数，每token激活9500亿参数，采用细粒度混合专家架构，支持最大100万token上下文窗口和12.8万token输出长度。官方称其在NVIDIA GB300 NVL72平台可实现每GPU每秒4000个token的推理速度。",
+      "explanation": "这个模型就像一个超级大脑，能处理非常复杂的任务，比如写代码或者分析大量文档，它的计算能力非常强，能在短时间内处理大量信息。",
+      "sources": [
+        {
+          "label": "NVIDIA Technical Blog",
+          "url": "https://developer.nvidia.com/blog/serve-qwen3-8-2-4t-a95b-a-2-4t-parameter-model-with-configurable-reasoning-on-nvidia-gb300-nvl72/"
+        }
+      ]
+    },
+    {
+      "category": "AI硬件",
+      "title": "Amazon SageMaker HyperPod 配合 Curvine 实现分层 KV 缓存",
+      "summary": "该技术通过分层缓存机制，在 Amazon SageMaker HyperPod 上实现大语言模型的高效推理。测试显示，该方案可达到 100% 跨 Pod 缓存命中率，TTFT 提升 2.7 倍，且在 1900 个 token 的提示下，跨节点 L2 读取延迟仅 56 毫秒。对于 7B 模型，剩余 30GB 空间足够存储 KV 块，而 32B 模型因内存不足无法单 GPU 安装。",
+      "explanation": "这项技术就像给电脑的硬盘装一个缓存层，让大模型在运行时能更快地访问数据，减少等待时间，同时节省成本。",
+      "sources": [
+        {
+          "label": "AWS Machine Learning Blog",
+          "url": "https://aws.amazon.com/blogs/machine-learning/tiered-kv-cache-for-large-llms-on-amazon-sagemaker-hyperpod-with-curvine/"
+        }
+      ]
+    }
+  ]
+}
