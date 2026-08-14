@@ -1,0 +1,21 @@
+{
+  "date": "2026-08-14",
+  "label": "08.14",
+  "year": "2026",
+  "coverageDate": "2026-08-13",
+  "coverageLabel": "08.13",
+  "items": [
+    {
+      "category": "人工智能",
+      "title": "利用低影响点减少计算成本",
+      "summary": "该研究提出一种高效去学习框架，在去学习前减少数据集规模，使计算成本降低约50%。这种方法通过分析数据点对模型的影响，仅移除对模型输出影响极小的数据点，从而在隐私保护和计算效率之间取得平衡。但需注意，该方法依赖于对数据点影响的评估，且适用于需要删除特定数据点的场景。",
+      "explanation": "这项技术让计算机在删除数据时更省力，就像在整理房间时能快速找到不需要的物品，从而节省资源。",
+      "sources": [
+        {
+          "label": "Apple Machine Learning Research",
+          "url": "https://machinelearning.apple.com/research/unlearning-low-influence-points"
+        }
+      ]
+    }
+  ]
+}
