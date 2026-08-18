@@ -1,0 +1,33 @@
+{
+  "date": "2026-08-18",
+  "label": "08.18",
+  "year": "2026",
+  "coverageDate": "2026-08-17",
+  "coverageLabel": "08.17",
+  "items": [
+    {
+      "category": "AI模型",
+      "title": "NVIDIA开发Nemotron 3.5 Lightning NVFP4模型使用QAD技术",
+      "summary": "NVIDIA通过NVIDIA Model Optimizer实现Nemotron 3.5 Lightning NVFP4模型的激进量化（W4A16/NVFP4），在保持接近BF16精度的情况下，使模型吞吐量提升至4倍，模型大小从66GB压缩至22GB。该模型通过PTQ阶段将全精度模型量化为W4A16，再通过QAD阶段训练生成最终的NVFP4模型，保持精度接近基准。",
+      "explanation": "NVIDIA通过一种技术让AI模型变得更小、运行更快。就像把一个大箱子压缩成小箱子，同时保持里面的东西还能正常工作，这样模型在运行时能处理更多任务，而且占用的内存更少。",
+      "sources": [
+        {
+          "label": "NVIDIA Technical Blog",
+          "url": "https://developer.nvidia.com/blog/developing-nemotron-3-5-lightning-nvfp4-with-qad-using-nvidia-model-optimizer/"
+        }
+      ]
+    },
+    {
+      "category": "AI技术应用",
+      "title": "OpenClaw与Amazon Bedrock AgentCore支付协议的集成",
+      "summary": "该文章介绍了OpenClaw与Amazon Bedrock AgentCore支付协议的集成，通过x402协议实现程序化支付。自主代理在浏览网页、调用API和查询MCP服务器时，可能遇到需要支付才能继续访问的HTTP 402响应。x402协议支持代理与服务之间的程序化支付流程，使HTTP原生协议如x402适用于代理发起的支付。该集成使用x402 v2版本，处理商户的HTTP 402挑战并返回签名授权，供客户端重放请求。原文未给出可比较的量化结果。",
+      "explanation": "这项技术让AI代理能够自动支付费用，比如访问需要付费的网站或API。就像你用信用卡支付购物一样，AI代理也能在规定范围内自动完成支付，而不需要人工干预。",
+      "sources": [
+        {
+          "label": "AWS Machine Learning Blog",
+          "url": "https://aws.amazon.com/blogs/machine-learning/build-openclaw-agents-that-transact-with-amazon-bedrock-agentcore-payments/"
+        }
+      ]
+    }
+  ]
+}
