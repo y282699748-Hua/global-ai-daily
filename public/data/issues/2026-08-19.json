@@ -1,0 +1,33 @@
+{
+  "date": "2026-08-19",
+  "label": "08.19",
+  "year": "2026",
+  "coverageDate": "2026-08-18",
+  "coverageLabel": "08.18",
+  "items": [
+    {
+      "category": "AI模型优化",
+      "title": "AI模型的内存使用优化研究",
+      "summary": "研究显示，通过精选检索方式，AI模型在任务完成效率上可提升16.1个百分点，仅需增加5%的token消耗。对于大容量模型，使用完整指南集能提升性能，但小模型则可能因指南集过大而效率下降。原文未给出可比较的量化结果。",
+      "explanation": "AI模型像一个需要记忆的助手，但并不是所有记忆都必须保存。通过选择性地保存关键信息，可以在不增加太多负担的情况下提高效率，就像在图书馆里只记住最重要的书一样。",
+      "sources": [
+        {
+          "label": "Hugging Face",
+          "url": "https://huggingface.co/blog/ibm-research/altk-evolve-hmm"
+        }
+      ]
+    },
+    {
+      "category": "AI应用",
+      "title": "Amazon Bedrock实现文档分类",
+      "summary": "Amazon Bedrock通过向量提示技术帮助保险公司分类数千份日常文档，如保单、宣誓书等。多代理系统在准确率上达到100%，但仍有约33%的文档被误分类。该技术能有效提升合规和客户服务效率，但需注意文档相似性可能导致的误判。",
+      "explanation": "这项技术像一个智能分拣员，能快速准确地将相似但用途不同的文档分门别类，避免处理错误。",
+      "sources": [
+        {
+          "label": "AWS Machine Learning Blog",
+          "url": "https://aws.amazon.com/blogs/machine-learning/implement-vector-prompt-document-classification-using-amazon-bedrock/"
+        }
+      ]
+    }
+  ]
+}
