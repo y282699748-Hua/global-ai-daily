@@ -1,0 +1,33 @@
+{
+  "date": "2026-08-28",
+  "label": "08.28",
+  "year": "2026",
+  "coverageDate": "2026-08-27",
+  "coverageLabel": "08.27",
+  "items": [
+    {
+      "category": "人工智能",
+      "title": "基于规则的对齐：面向基础知识答案的对齐方法",
+      "summary": "该研究提出一种基于规则的奖励框架，通过生成与检索证据相关的查询特定规则，将答案质量分解为多个维度进行精细监督。在三个评估轴（组成、基础和遵循指令）上，该方法平均提升了4%以上。原文未给出可比较的量化结果。",
+      "explanation": "这项技术通过制定具体的评分标准，让AI在回答问题时能更准确地判断答案是否符合要求，就像老师根据作业的各个标准来评分一样。",
+      "sources": [
+        {
+          "label": "Apple Machine Learning Research",
+          "url": "https://machinelearning.apple.com/research/rubric-based-alignment"
+        }
+      ]
+    },
+    {
+      "category": "AI与通信",
+      "title": "基于知识蒸馏的语义NOMA与GAN优化的6G机器人网络",
+      "summary": "该研究提出KDG-SemNOMA框架，通过知识蒸馏和GAN优化提升6G机器人网络的视觉感知精度。在FFHQ-256数据集上，其在像素级准确度和感知保真度上显著优于现有方法。该技术适用于对带宽和能耗有严格限制的6G机器人通信场景，但需验证其在实际部署中的稳定性。",
+      "explanation": "这项技术就像给手机装一个智能老师，让手机在通信时更清晰地看到周围环境，特别适合需要高精度视觉的6G机器人。",
+      "sources": [
+        {
+          "label": "arXiv AI/ML/CL/CV",
+          "url": "https://arxiv.org/abs/2608.27198v1"
+        }
+      ]
+    }
+  ]
+}
