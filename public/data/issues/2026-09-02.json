@@ -1,0 +1,57 @@
+{
+  "date": "2026-09-02",
+  "label": "09.02",
+  "year": "2026",
+  "coverageDate": "2026-09-01",
+  "coverageLabel": "09.01",
+  "items": [
+    {
+      "category": "人工智能",
+      "title": "Gemini引入代理视频理解功能",
+      "summary": "Gemini新功能通过动态扫描视频片段，将token消耗降低88%，成本减少66%，精度提升7%。该功能在长视频处理中效果显著，如10分钟到90分钟的教程和讲座，避免了高成本与细节丢失的矛盾。原文未给出可比较的量化结果。",
+      "explanation": "Gemini新功能像给视频分析装上了‘智能眼睛’，能自动寻找和检查视频中的关键部分，让处理更高效、更准确，尤其适合处理长视频。",
+      "sources": [
+        {
+          "label": "Google DeepMind",
+          "url": "https://deepmind.google/blog/introducing-agentic-video-in-gemini/"
+        }
+      ]
+    },
+    {
+      "category": "AI教育与培训",
+      "title": "Atos为400名工程师培训agentic AI实战能力",
+      "summary": "Atos为400名工程师培训agentic AI，其中5%无相关知识，50%有理论但无实战经验。通过AWS平台，工程师在三天内构建了包含路径规划、守卫机制和记忆模块的多智能体系统。该培训强调实战经验对AI应用的重要性，但原文未给出可比较的量化结果。",
+      "explanation": "通过实际操作，工程师学会了如何让AI系统协作解决问题，就像让多个助手一起完成一项任务一样。",
+      "sources": [
+        {
+          "label": "AWS Machine Learning Blog",
+          "url": "https://aws.amazon.com/blogs/machine-learning/from-theory-to-delivery-how-atos-upskilled-400-engineers-in-agentic-ai/"
+        }
+      ]
+    },
+    {
+      "category": "AI安全与信任",
+      "title": "t54构建基于Amazon Bedrock AgentCore的可信支付层",
+      "summary": "t54在Amazon Bedrock AgentCore上构建了x402-secure可信支付层，通过会话预算、凭证隔离和确定性信任门控，处理了超过2000万次自主支付交易，无需人工审批。每笔交易为微支付，金额在0.001至0.01美元之间，以高速高频率完成，远超人工审核能力。",
+      "explanation": "这项技术让AI系统在使用第三方服务时，能自动判断支付是否安全，就像给AI系统装上‘钱包’，让它在遇到支付限制时自动停止，避免因资金不足而中断操作。",
+      "sources": [
+        {
+          "label": "AWS Machine Learning Blog",
+          "url": "https://aws.amazon.com/blogs/machine-learning/how-t54-built-a-trust-layer-with-amazon-bedrock-agentcore-payments/"
+        }
+      ]
+    },
+    {
+      "category": "AI治理",
+      "title": "Jamf构建Amazon Bedrock实时支出管控方案",
+      "summary": "Jamf通过AWS Lambda每15分钟运行一次的实时管控机制，对未识别模型按最高层级收费，防止超支。该方案成本低于每月10美元，适用于需严格控制AI使用成本的场景。原文未给出可比较的量化结果",
+      "explanation": "这个方案就像给AI使用设定了一个‘预算警报’，当某个模型使用超过预算时会自动限制，确保不会花太多钱，同时不影响工程师正常工作。",
+      "sources": [
+        {
+          "label": "AWS Machine Learning Blog",
+          "url": "https://aws.amazon.com/blogs/machine-learning/tokenomics-at-scale-how-jamf-built-real-time-spend-enforcement-for-amazon-bedrock/"
+        }
+      ]
+    }
+  ]
+}
