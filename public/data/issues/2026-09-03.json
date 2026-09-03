@@ -1,0 +1,57 @@
+{
+  "date": "2026-09-03",
+  "label": "09.03",
+  "year": "2026",
+  "coverageDate": "2026-09-02",
+  "coverageLabel": "09.02",
+  "items": [
+    {
+      "category": "人工智能",
+      "title": "组织第二大脑：构建一个从专家学习的AI",
+      "summary": "该系统通过整理200+文件建立严格分类，确保引用准确性和机构一致性。每个查询仅触达小部分数据，减少约80%的token消耗。专家可30秒内审查文本修改。此AI代理作为领域专家的补充，使专业知识可被组织内任何人访问和共享。",
+      "explanation": "这个AI就像组织里的第二个专家，能帮助人们快速找到和理解专业领域的知识，让专家的经验和决策变得更容易被大家使用和学习。",
+      "sources": [
+        {
+          "label": "Meta AI Research",
+          "url": "https://engineering.fb.com/2026/09/02/ml-applications/organizational-second-brain-ai-learns-from-experts/"
+        }
+      ]
+    },
+    {
+      "category": "人工智能",
+      "title": "利用推测解码优化大语言模型推理速度",
+      "summary": "通过调整草案长度和解码机制，优化大语言模型（LLM）推理效率。当注意力机制占主导时，将草案长度设置为128/G - 1，以匹配注意力核的tile边界。该方法通过减少解码迭代次数，同时保持输出准确性。原文未给出可比较的量化结果。",
+      "explanation": "这种技术就像让一个助手先预测接下来的内容，再由主模型验证，从而加快处理速度，同时确保结果准确。",
+      "sources": [
+        {
+          "label": "NVIDIA Technical Blog",
+          "url": "https://developer.nvidia.com/blog/co-designing-ai-models-using-speculative-decoding-for-faster-llm-inference/"
+        }
+      ]
+    },
+    {
+      "category": "AI应用",
+      "title": "Trinity：基于AI的残疾学生过渡规划系统",
+      "summary": "Trinity系统通过三个AI代理（College Agent、Employment Agent、Training Agent）为残疾学生提供个性化过渡规划。系统基于超过3万条记录的知识库推荐大学和职业培训项目，结合语义相似度、关键词匹配等四因素模型，生成符合IDEA标准的规划方案。该系统已部署于美国多个学校区，帮助学生自主规划未来教育路径。",
+      "explanation": "Trinity就像一个智能助手，能根据学生的需求和背景，推荐适合的大学、职业培训和工作机会，帮助残疾学生更好地规划未来的学习和职业道路。",
+      "sources": [
+        {
+          "label": "AWS Machine Learning Blog",
+          "url": "https://aws.amazon.com/blogs/machine-learning/trinity-agentic-ai-powered-transition-planning-for-students-with-disabilities/"
+        }
+      ]
+    },
+    {
+      "category": "网络安全",
+      "title": "Google推出政府和企业前瞻性网络安全防御计划",
+      "summary": "Google推出Fairwind计划，为政府和可信合作伙伴提供先进网络安全工具。该计划通过零信任架构和AI防御技术，保护数十亿账户，已投入超1亿美元资金。但具体防护效果和适用范围需进一步验证。",
+      "explanation": "Google像给网络安全穿上‘防护衣’，通过智能技术保护大量用户，但目前还不清楚这种防护能真正挡住多少网络威胁。",
+      "sources": [
+        {
+          "label": "Google DeepMind",
+          "url": "https://deepmind.google/blog/proactive-cyber-defense-for-governments-and-enterprises/"
+        }
+      ]
+    }
+  ]
+}
