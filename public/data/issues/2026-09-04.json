@@ -1,0 +1,45 @@
+{
+  "date": "2026-09-04",
+  "label": "09.04",
+  "year": "2026",
+  "coverageDate": "2026-09-03",
+  "coverageLabel": "09.03",
+  "items": [
+    {
+      "category": "安全",
+      "title": "GPT-6 Astra 安全概述",
+      "summary": "GPT-6 Astra 是 OpenAI 部署范围最广的模型，也是首个达到我们 Preparedness 框架下 Critical 级别网络安全能力的模型。其安全性能经过严格验证，适用于需要高安全标准的场景，但原文未给出可比较的量化结果。",
+      "explanation": "GPT-6 Astra 是 OpenAI 开发的最强大模型之一，它在网络安全方面达到了很高的标准，可以用于需要保护数据安全的场合。但具体的安全性能数据没有明确提供。",
+      "sources": [
+        {
+          "label": "OpenAI News",
+          "url": "https://openai.com/index/safety-overview-gpt-6-astra"
+        }
+      ]
+    },
+    {
+      "category": "人工智能",
+      "title": "WeatherNext 3：谷歌最新全球天气AI模型",
+      "summary": "WeatherNext 3利用实时卫星数据替代传统物理模拟，提升天气预报精度和分辨率。关键变量如温度和湿度可达到5公里分辨率，风速等大气变量达25公里。该模型已集成至搜索、地图等平台，提供每小时更新的精准预测，对农业、能源等领域有显著帮助。原文未给出可比较的量化结果",
+      "explanation": "WeatherNext 3就像一个能看懂天气的超级大脑，它用卫星数据代替传统计算方式，让天气预报更准、更详细，能帮助人们更好地安排日常活动和规划重要决策。",
+      "sources": [
+        {
+          "label": "Google DeepMind",
+          "url": "https://deepmind.google/blog/introducing-weathernext-3-our-most-advanced-and-accurate-global-weather-ai-model/"
+        }
+      ]
+    },
+    {
+      "category": "AI硬件",
+      "title": "NVIDIA PAIR 虚拟推理路由器扩展本地网络的计算能力",
+      "summary": "PAIR 虚拟推理路由器可将本地网络中的计算资源集中分配，提升多智能体任务处理效率。在五智能体测试中，三设备集群将任务完成时间从单台 RTX Spark 笔记本的 18 分钟缩短至 8 分 48 秒。该技术支持多种硬件，包括 RTX 20 系列、RTX PRO 工作站 GPU、DGX Spark 和 Apple M4+ 芯片。",
+      "explanation": "PAIR 虚拟推理路由器就像一个智能调度器，能将多个设备的计算能力整合起来，让多个 AI 智能体更高效地协作处理复杂任务，就像多个厨师共同烹饪一道大菜，能更快完成。",
+      "sources": [
+        {
+          "label": "NVIDIA Technical Blog",
+          "url": "https://developer.nvidia.com/blog/nvidia-pair-virtual-inference-router-expands-available-compute-on-your-local-network/"
+        }
+      ]
+    }
+  ]
+}
