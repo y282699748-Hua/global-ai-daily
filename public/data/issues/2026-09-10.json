@@ -1,0 +1,45 @@
+{
+  "date": "2026-09-10",
+  "label": "09.10",
+  "year": "2026",
+  "coverageDate": "2026-09-09",
+  "coverageLabel": "09.09",
+  "items": [
+    {
+      "category": "AI推理优化",
+      "title": "NVIDIA推出EPD解耦技术加速多模态模型推理",
+      "summary": "EPD解耦技术通过将视觉编码阶段与LLM预填充和解码阶段分离，显著提升多模态模型的响应速度。在混合文本和多模态流量中，该技术可使文本请求的平均TTFT降低42.2%，图像请求降低30.8%。量化LLM权重至NVFP4并保持视觉编码器在BF16，可将EPD的吞吐量提升1.64倍。",
+      "explanation": "EPD技术就像把多模态模型的‘大脑’和‘嘴巴’分开，让视觉信息处理和语言生成能同时进行，从而加快整体响应速度。",
+      "sources": [
+        {
+          "label": "NVIDIA Technical Blog",
+          "url": "https://developer.nvidia.com/blog/when-to-use-encode-prefill-decode-disaggregation-to-accelerate-multimodal-model-serving/"
+        }
+      ]
+    },
+    {
+      "category": "AI模型",
+      "title": "IBM发布可商用的时序预测模型Granite Time Series PatchTST-FM-r2",
+      "summary": "IBM推出可商用的时序预测模型Granite Time Series PatchTST-FM-r2，该模型在时间序列预测任务中表现出色。官方称其具备商业友好型授权，便于企业应用。但原文未给出可比较的量化结果，具体性能指标需进一步验证。",
+      "explanation": "这个模型能帮助企业更准确地预测未来数据趋势，比如销售情况或设备故障，但目前没有明确的数字说明它有多好，需要更多实际应用数据来确认。",
+      "sources": [
+        {
+          "label": "Hugging Face",
+          "url": "https://huggingface.co/blog/ibm-research/ibm-releases-sota-granite-time-series"
+        }
+      ]
+    },
+    {
+      "category": "AI基础设施",
+      "title": "AWS推出多项AI构建工具新功能",
+      "summary": "AWS在8月2026年推出多项AI构建工具更新，包括支持百万token上下文的OpenAI模型、跨区域推理、可运行14天的专用计算代理、扩展AWS GovCloud可用性以及Strands机器人物理部署功能。6 Sol、Terra和Luna现在支持百万token上下文窗口和提示缓存，有助于减少重复使用上下文时的成本和延迟。",
+      "explanation": "AWS新功能让AI开发者能更高效地处理大量数据，比如让AI模型能记住更多信息，同时在不同地区运行，还能长时间运行专用计算资源，提升AI应用的稳定性和效率。",
+      "sources": [
+        {
+          "label": "AWS Machine Learning Blog",
+          "url": "https://aws.amazon.com/blogs/machine-learning/icymi-what-landed-for-ai-builders-in-august-2026/"
+        }
+      ]
+    }
+  ]
+}
