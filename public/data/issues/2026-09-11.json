@@ -1,0 +1,45 @@
+{
+  "date": "2026-09-11",
+  "label": "09.11",
+  "year": "2026",
+  "coverageDate": "2026-09-10",
+  "coverageLabel": "09.10",
+  "items": [
+    {
+      "category": "AI 服务优化",
+      "title": "NVIDIA NIM 优化提升Nemotron 3 Ultra用户容量",
+      "summary": "NVIDIA NIM 2.0.12优化方案通过12项技术提升Nemotron 3 Ultra的系统吞吐量，使4块B200显卡系统在50 TPS/用户目标下达到1,997 tokens/s。该优化方案包含自动调优内核、张量并行、前缀和状态复用等技术，相比未优化的基准方案提升2.5倍。",
+      "explanation": "NVIDIA通过优化AI模型的运行方式，让同一台服务器能同时服务更多用户。就像在高速路上加装更多车道，让车流更顺畅，Nemotron 3 Ultra在优化后能更快地处理用户请求。",
+      "sources": [
+        {
+          "label": "NVIDIA Technical Blog",
+          "url": "https://developer.nvidia.com/blog/how-full-stack-nim-optimizations-deliver-2-5x-more-users-on-nemotron-3-ultra/"
+        }
+      ]
+    },
+    {
+      "category": "AI硬件",
+      "title": "BioNeMo推理运行时提升蛋白质结构预测效率",
+      "summary": "BioNeMo推理运行时在8块H100显卡上，将蛋白质结构预测的残基折叠速度提升至每GPU小时58.5千个，相比开源实现提升2.9倍。该技术能高效处理大规模蛋白质组数据，加速生成4777个蛋白质组的3100万个候选复合物结构。",
+      "explanation": "BioNeMo就像一个加速器，让电脑更快地理解蛋白质的形状，就像让厨师更快地烹饪食物一样，大幅提升处理大量蛋白质数据的效率。",
+      "sources": [
+        {
+          "label": "NVIDIA Technical Blog",
+          "url": "https://developer.nvidia.com/blog/high-throughput-structure-prediction-with-bionemo-inference-runtime/"
+        }
+      ]
+    },
+    {
+      "category": "AI 服务与部署",
+      "title": "Amazon SageMaker 推出前缀感知路由技术降低大模型延迟",
+      "summary": "Amazon SageMaker 通过前缀感知路由技术，将70B大模型的P50时间到第一个token降低至77%，KV缓存命中率从25%提升至80%。该技术将相同前缀的请求导向同一实例，保持缓存热度。适用于需要处理大量重复前缀场景，如客服机器人等应用。",
+      "explanation": "这项技术让相同开头的请求共享计算资源，就像多个用户使用同一本书时，大家都能更快地读到相同的部分。",
+      "sources": [
+        {
+          "label": "AWS Machine Learning Blog",
+          "url": "https://aws.amazon.com/blogs/machine-learning/reduce-llm-latency-with-prefix-aware-routing-on-amazon-sagemaker-inference/"
+        }
+      ]
+    }
+  ]
+}
