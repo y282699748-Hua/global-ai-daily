@@ -1,0 +1,45 @@
+{
+  "date": "2026-09-15",
+  "label": "09.15",
+  "year": "2026",
+  "coverageDate": "2026-09-14",
+  "coverageLabel": "09.14",
+  "items": [
+    {
+      "category": "AI应用",
+      "title": "AWS推出生成式AI定制化方案：从提示工程到自定义模型",
+      "summary": "AWS提供从提示工程到自定义模型的生成式AI定制化方案。通过RAG技术，企业可将知识库整合到客服系统中，使处理时间减少10-15%，并提升查询量。同时，AI模型可实现聊天机器人响应速度低于1秒，理解力提升80%。但需根据提示长度和知识需求选择合适方案，避免过度复杂化。",
+      "explanation": "AWS提供了一种从简单提示调整到自定义模型的生成式AI使用方式。比如，客服系统可以利用RAG技术快速处理大量文档，让客服效率提升，而聊天机器人也能在保持理解力的同时快速回应用户。但使用时要根据具体需求选择合适的方法，不要过度复杂化。",
+      "sources": [
+        {
+          "label": "AWS Machine Learning Blog",
+          "url": "https://aws.amazon.com/blogs/machine-learning/the-generative-ai-customization-spectrum-from-prompt-engineering-to-custom-models-on-aws/"
+        }
+      ]
+    },
+    {
+      "category": "科技与社会",
+      "title": "NASA宇航员Christina Koch与Google高管James Manyika探讨太空、科技与发现",
+      "summary": "Christina Koch分享了她在国际空间站驻留328天和完成历史性全女性太空行走的经历。她与James Manyika讨论了从250,000英里外看待地球如‘生命之舟’的视角，以及宇航员、机器人和AI的协同合作。原文未给出可比较的量化结果",
+      "explanation": "这次对话探讨了人类在太空中的探索和科技如何帮助我们理解宇宙，就像用望远镜观察地球一样，科技让人类能从更远的地方了解我们的家园。",
+      "sources": [
+        {
+          "label": "Google AI",
+          "url": "https://blog.google/innovation-and-ai/technology/ai/dialogues-christina-koch/"
+        }
+      ]
+    },
+    {
+      "category": "AI应用",
+      "title": "Ninth Wave利用Amazon Bedrock构建AI驱动的开放金融入驻流程",
+      "summary": "Ninth Wave通过Amazon Bedrock构建AI驱动的开放金融入驻流程，将API映射和分析时间减少了95%。该系统将银行API标准化为FDX标准，使银行只需一次集成即可接入整个开放金融网络。此技术显著提升了效率，将原本需要数周的流程缩短至几分钟。",
+      "explanation": "Ninth Wave利用AI技术，让银行能够快速连接到开放金融网络，就像让不同软件自动匹配接口一样，大大节省了时间和人力。",
+      "sources": [
+        {
+          "label": "AWS Machine Learning Blog",
+          "url": "https://aws.amazon.com/blogs/machine-learning/how-ninth-wave-built-ai-powered-open-finance-onboarding-on-amazon-bedrock/"
+        }
+      ]
+    }
+  ]
+}
