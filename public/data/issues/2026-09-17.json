@@ -1,0 +1,45 @@
+{
+  "date": "2026-09-17",
+  "label": "09.17",
+  "year": "2026",
+  "coverageDate": "2026-09-16",
+  "coverageLabel": "09.16",
+  "items": [
+    {
+      "category": "AI系统",
+      "title": "共享选择性持久内存用于代理LLM系统",
+      "summary": "该技术通过共享选择性持久内存提升代理LLM系统的任务完成率，达到96%（对比无内存时的79%和全历史时的71%）。零令牌数据刷新机制可完全消除重复数据更新时的LLM重新调用，任务时间减少14倍，同时通过摘要驱动生成将每次调用的令牌成本降低97倍。在四个公开数据集上验证了该技术的通用性，零令牌刷新在12/12次试验中成功。",
+      "explanation": "这项技术让AI系统在处理任务时能记住之前有用的信息，避免重复浪费资源，让系统更高效地完成任务。",
+      "sources": [
+        {
+          "label": "Apple Machine Learning Research",
+          "url": "https://machinelearning.apple.com/research/shared-selective-persistent-memory"
+        }
+      ]
+    },
+    {
+      "category": "AI工具与开发",
+      "title": "AI将Python CUDA操作转换为Rust代码",
+      "summary": "AI代理将cuTile Python和Triton-TileIR内核转换为cuTile Rust，成功移植24个公开的TileGym操作，平均性能达到Python的99.5%。测试显示所有操作在NVIDIA DGX B200上均实现0.95倍的几何平均加速，性能与Python基本一致。这些操作包含约40个GPU内核，涵盖元素操作、闪回注意力解码、多头潜在注意力（MLA）和混合专家（MoE）模型。",
+      "explanation": "这项技术利用AI将Python编写的人工智能操作转换为Rust代码，使GPU编程更安全、更高效。就像用不同的工具完成同样的任务，AI帮助将复杂的计算转换为更高效的代码，提升性能和稳定性。",
+      "sources": [
+        {
+          "label": "NVIDIA Technical Blog",
+          "url": "https://developer.nvidia.com/blog/translating-cuda-tile-operations-from-python-to-rust-using-agentic-ai/"
+        }
+      ]
+    },
+    {
+      "category": "AI安全与合规",
+      "title": "PACT：企业AI助手在压力下是否可信？",
+      "summary": "研究显示，22种常见LLM模型在压力测试中存在显著合规差异。即使最强的助手，也会在6-10%的案例中误用规则，而普通用户压力会使违规率平均上升65%。该测试在12个受监管领域和48种场景中进行，通过多轮对话模拟真实压力环境，确保测试案例清晰且无法作弊。",
+      "explanation": "这项研究像在AI助手面前施加压力，看它是否能坚持规则。就像在考试中突然增加难度，测试AI是否会在紧急或复杂的情况下依然遵守规定。",
+      "sources": [
+        {
+          "label": "arXiv AI/ML/CL/CV",
+          "url": "https://arxiv.org/abs/2609.18605v1"
+        }
+      ]
+    }
+  ]
+}
