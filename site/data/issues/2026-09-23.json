@@ -1,0 +1,57 @@
+{
+  "date": "2026-09-23",
+  "label": "09.23",
+  "year": "2026",
+  "coverageDate": "2026-09-22",
+  "coverageLabel": "09.22",
+  "items": [
+    {
+      "category": "AI安全与隐私",
+      "title": "NVIDIA Confidential Computing助力私有高性能AI推理",
+      "summary": "NVIDIA Confidential Computing通过加密虚拟机和GPU实现敏感数据处理安全。在B200芯片上，启用CC后输出吞吐量保留率达96.2%，平均TPOT延迟仅1%。该技术允许在受信任硬件上运行生产级AI推理，确保模型上下文和用户数据安全。",
+      "explanation": "NVIDIA Confidential Computing就像给AI计算设备穿上‘防护衣’，确保处理的数据不被泄露。即使在运行AI模型时，数据也像被加密的文件一样安全，只有授权的程序才能访问。",
+      "sources": [
+        {
+          "label": "NVIDIA Technical Blog",
+          "url": "https://developer.nvidia.com/blog/enabling-private-high-performance-production-ai-inference-with-nvidia-confidential-computing/"
+        }
+      ]
+    },
+    {
+      "category": "AI模型与算法",
+      "title": "TimeInteract：实时交互智能处理时序数据",
+      "summary": "TimeInteract通过双视角流式时序编码器捕捉局部变化和历史动态，结合响应控制机制决定何时触发响应，实现近零流式阻塞和2.15倍推理加速。该模型在单次和多轮交互中，相比现有模型在挑战性任务上提升23.92分。原文未给出可比较的量化结果",
+      "explanation": "TimeInteract就像一个能边听边想的智能助手，它能持续接收不断变化的数据，根据情况决定是保持沉默还是给出回答，同时在回答过程中还能继续处理新数据，让处理过程更流畅高效。",
+      "sources": [
+        {
+          "label": "arXiv AI/ML/CL/CV",
+          "url": "https://arxiv.org/abs/2609.26389v1"
+        }
+      ]
+    },
+    {
+      "category": "AI模型优化",
+      "title": "解耦量化：专为LLM预填充和解码定制",
+      "summary": "通过去除解码阶段的激活量化，Qwen3和Gemma3在解码密集任务上提升准确率，且不增加推理成本。训练专用预填充权重可加速提示处理，同时在解码阶段保持2-3位精度。在27B模型上，解耦量化使解码速度提升1.78倍。原文未给出可比较的量化结果",
+      "explanation": "这项技术像给AI模型做‘分身’，分别优化预填充和解码过程，让模型在处理不同任务时更高效，就像给汽车的发动机和变速箱分别调校，让整体运行更顺畅。",
+      "sources": [
+        {
+          "label": "arXiv AI/ML/CL/CV",
+          "url": "https://arxiv.org/abs/2609.26333v1"
+        }
+      ]
+    },
+    {
+      "category": "AI模型优化",
+      "title": "CompKV：面向长上下文LLM推理的补偿感知键值选择",
+      "summary": "CompKV通过将token分块并优化选择策略，显著提升长上下文LLM推理效率。实验显示其在RULER和LongBench-Pro上表现最佳，相比全注意力计算快6.85倍。该方法通过补偿未选token的注意力尾部，减少KV缓存内存流量瓶颈。",
+      "explanation": "CompKV像一个智能筛选器，优先选择对后续计算影响最大的token，让计算机能更快处理长文本信息，就像在图书馆里优先借阅最需要的书。",
+      "sources": [
+        {
+          "label": "arXiv AI/ML/CL/CV",
+          "url": "https://arxiv.org/abs/2609.26300v1"
+        }
+      ]
+    }
+  ]
+}
