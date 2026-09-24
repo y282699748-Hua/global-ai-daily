@@ -1,0 +1,69 @@
+{
+  "date": "2026-09-24",
+  "label": "09.24",
+  "year": "2026",
+  "coverageDate": "2026-09-23",
+  "coverageLabel": "09.23",
+  "items": [
+    {
+      "category": "人工智能",
+      "title": "语言流引导方法提升文本生成效率",
+      "summary": "苹果研究团队提出一种名为probe guidance的引导方法，通过冻结扩散模型的内部状态来构建引导信号，使生成过程更高效。该方法在7B扩散语言模型上实现无条件生成的最新状态，但需验证其在长文本生成中的实际效果。原文未给出可比较的量化结果。",
+      "explanation": "这种新技术像给生成过程装了一个导航仪，让模型在生成文本时更顺畅，减少重复和错误，但目前还不确定它是否能真正提升长文本的生成效率。",
+      "sources": [
+        {
+          "label": "Apple Machine Learning Research",
+          "url": "https://machinelearning.apple.com/research/guide-language-flow"
+        }
+      ]
+    },
+    {
+      "category": "AI医疗",
+      "title": "NVIDIA推出3DCT影像分析模型提升放射科诊断效率",
+      "summary": "NVIDIA推出的NV-Reason-CT模型结合3D视觉Transformer与400亿参数语言模型，能处理CT影像中的三维空间信息，提升异常检测准确率。该模型在CT-RATE基准测试中取得Macro-F1 0.614和Macro-AUROC 0.871的优异成绩，优于现有方法。模型通过结构化报告和推理过程增强临床可信度。",
+      "explanation": "这个模型像放射科医生一样逐步分析CT影像，能更全面地理解人体器官的三维结构，帮助医生更准确地发现异常，就像用放大镜仔细检查每个细节。",
+      "sources": [
+        {
+          "label": "NVIDIA Technical Blog",
+          "url": "https://developer.nvidia.com/blog/introducing-nv-reason-ct-open-3d-ct-vlm-for-radiologist-chain-of-thought-reasoning/"
+        }
+      ]
+    },
+    {
+      "category": "AI模型",
+      "title": "InternW0：一种高效的现实世界交互基础物理世界模型",
+      "summary": "InternW0是上海人工智能实验室推出的首个物理世界模型系列实例，通过多模态接口、异步多频处理和局部物理建模实现高效现实世界交互。该模型在约7200小时的异质机器人和第一人称数据上训练，包含275小时的现实实验室第一人称数据集。其评估涵盖模拟基准和现实世界科学任务，如15阶段的金属-有机框架合成流程和5阶段的力感知精细操作。",
+      "explanation": "InternW0就像一个能理解并预测现实世界变化的智能助手，它能根据观察到的信息快速调整行动，让机器人更高效地与真实环境互动。",
+      "sources": [
+        {
+          "label": "arXiv AI/ML/CL/CV",
+          "url": "https://arxiv.org/abs/2609.27656v1"
+        }
+      ]
+    },
+    {
+      "category": "自动驾驶",
+      "title": "少语言标注，多潜在特征：用于驾驶的高效视觉-语言模型",
+      "summary": "LADA模型仅使用少于5%的语言标注数据，无需依赖辅助推理或视觉问答流，便在闭合回路Bench2Drive基准测试中取得Driving Score 87.98和成功率70.46%，与全监督基线相当或更优。该方法通过将大量未标注的观察-轨迹对转化为语言条件控制的子基质，有效缓解了语言标注稀缺的问题。",
+      "explanation": "LADA像一个能理解指令的自动驾驶系统，它用很少的语言指令就能控制车辆，就像用简单的指令让机器人完成复杂任务一样。",
+      "sources": [
+        {
+          "label": "arXiv AI/ML/CL/CV",
+          "url": "https://arxiv.org/abs/2609.27747v1"
+        }
+      ]
+    },
+    {
+      "category": "AI技术",
+      "title": "State-Grounded Conditioning：基于状态的条件化设计",
+      "summary": "SGC通过将用户状态（如游戏状态、会话历史）纳入模型决策，提升对话准确性。在200个会话的测试中，其转级准确率从61.1%提升至96.7%，错误率下降78%。该技术适用于需要实时状态感知的场景，如游戏指导系统。",
+      "explanation": "SGC就像让AI根据玩家当前的游戏状态来调整对话内容，确保回答始终符合实际情况，避免偏离任务方向。",
+      "sources": [
+        {
+          "label": "arXiv AI/ML/CL/CV",
+          "url": "https://arxiv.org/abs/2609.27606v1"
+        }
+      ]
+    }
+  ]
+}
