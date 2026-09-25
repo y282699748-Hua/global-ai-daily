@@ -1,0 +1,57 @@
+{
+  "date": "2026-09-25",
+  "label": "09.25",
+  "year": "2026",
+  "coverageDate": "2026-09-24",
+  "coverageLabel": "09.24",
+  "items": [
+    {
+      "category": "AI研究",
+      "title": "突破环境壁垒：演进LLM代理环境以实现递归自我提升",
+      "summary": "该系统通过构建Collection Maps和Event Logs补充上下文，提升下游任务表现，实验显示九个模型在30项任务上 rubric pass rate 提高超过15.1%。但原文未给出可比较的量化结果。",
+      "explanation": "这项研究让AI系统能像人一样，通过整理和记录环境中的信息，帮助AI更好地理解和处理复杂任务。",
+      "sources": [
+        {
+          "label": "arXiv AI/ML/CL/CV",
+          "url": "https://arxiv.org/abs/2609.29773v1"
+        }
+      ]
+    },
+    {
+      "category": "AI模型",
+      "title": "ICE：任务对齐的克利福德潜变量场用于多模态图基础模型",
+      "summary": "ICE在30项监督和少样本比较中均排名第一。该模型通过克利福德潜变量场处理多模态图，能保留实体语义并构建交互状态。其核心在于通过几何产品转换方向为标量、双矢量和三矢量关系，确保跨图可达性与任务残差控制。原文未给出可比较的量化结果。",
+      "explanation": "ICE是一种能处理多种数据类型的AI模型，它像一个能理解不同数据之间的关系的‘多面手’，能更准确地识别和预测数据间的联系。",
+      "sources": [
+        {
+          "label": "arXiv AI/ML/CL/CV",
+          "url": "https://arxiv.org/abs/2609.29398v1"
+        }
+      ]
+    },
+    {
+      "category": "人工智能",
+      "title": "联邦学习中的ASR半监督学习实用配方：在线伪标签与服务器更新稳定化",
+      "summary": "该研究提出一种联邦学习方法，通过服务器更新稳定化和在线伪标签技术，提升了ASR在半监督学习中的性能。实验显示，该方法在9对指标上优于现有方法，平均在域内提升20.8%，跨域提升10.0%，缩小了与全监督联邦学习的差距。",
+      "explanation": "这项研究像在一群学生中用老师指导他们学习，老师通过已有的知识给学生打分，学生根据分数自我纠正，从而在没有太多老师指导的情况下，让学习更高效。",
+      "sources": [
+        {
+          "label": "Apple Machine Learning Research",
+          "url": "https://machinelearning.apple.com/research/practical-recipe-federated-asr"
+        }
+      ]
+    },
+    {
+      "category": "人工智能",
+      "title": "通过潜在空间蒸馏压缩流式神经音频编码器",
+      "summary": "研究通过潜在空间蒸馏技术将音频编码器压缩至原大小的1/8，压缩后的模型在五对教师-学生模型中未进行微调的情况下，误码率（WER）仅比教师模型高1.9%。该技术可有效降低内存占用，提升设备端语音处理效率。",
+      "explanation": "这项技术就像用一个更小的‘助手’来模仿一个大的‘老师’，让‘助手’在不经过额外训练的情况下，也能做到几乎和‘老师’一样好，从而节省设备上的内存和电力，让语音处理更快更省资源。",
+      "sources": [
+        {
+          "label": "Apple Machine Learning Research",
+          "url": "https://machinelearning.apple.com/research/latent-space-distillation"
+        }
+      ]
+    }
+  ]
+}
