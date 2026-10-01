@@ -1,0 +1,45 @@
+{
+  "date": "2026-10-01",
+  "label": "10.01",
+  "year": "2026",
+  "coverageDate": "2026-09-30",
+  "coverageLabel": "09.30",
+  "items": [
+    {
+      "category": "人工智能",
+      "title": "SCLATE：持续学习代理训练与评估的子系统",
+      "summary": "SCLATE通过共享选择性持久内存，解决了持续学习代理在多会话中丢失上下文的问题。其在SWE-bench测试中通过率提高7点，MetaClaw准确率提升最高11%，且文件行数减少8倍。该系统允许基准测试和未修改的代理通过适配器向开放事件调度器添加事件，但原文未给出可比较的量化结果。",
+      "explanation": "SCLATE就像一个能记住过去操作的助手，让AI在多次使用中不会忘记之前学过的东西，这样它在解决问题时会更有效率。",
+      "sources": [
+        {
+          "label": "Apple Machine Learning Research",
+          "url": "https://machinelearning.apple.com/research/sclate-agent-training-evaluation"
+        }
+      ]
+    },
+    {
+      "category": "AI工具与框架",
+      "title": "NVIDIA NeMo Relay 跟踪代理行为",
+      "summary": "NVIDIA NeMo Relay 能追踪代理执行过程，通过记录模型调用、工具使用和数据流，帮助评估代理性能。在测试中，Qwen Coder 30B 恢复更多任务但增加了调用次数和延迟。该工具能通过结构化轨迹分析代理行为，适用于需要精确控制和验证的场景。",
+      "explanation": "NVIDIA NeMo Relay 像一个‘行为记录仪’，能跟踪AI代理在执行任务时的每一步操作，比如调用模型、使用工具、处理数据等，帮助开发者了解代理如何完成任务，以及改进后是否更有效。",
+      "sources": [
+        {
+          "label": "NVIDIA Technical Blog",
+          "url": "https://developer.nvidia.com/blog/tracing-agent-harness-behavior-with-nvidia-nemo-relay/"
+        }
+      ]
+    },
+    {
+      "category": "人工智能",
+      "title": "Gemini 4 Argon：前沿智能的新时代",
+      "summary": "Gemini 4 Argon模型具备行业领先的100万token限制，可处理复杂多步骤问题。其在代码编写、金融研究和网络安全等领域表现出色，已用于内部工作流。官方称通过内存优化节省了超过300TiB内存，但具体节省总量仍需独立验证。",
+      "explanation": "Gemini 4 Argon就像一个能处理复杂任务的超级助手，它能一步步解决难题，比如写代码或分析金融数据。它还能帮助公司节省大量内存资源，但具体节省多少还需要进一步确认。",
+      "sources": [
+        {
+          "label": "Google DeepMind",
+          "url": "https://deepmind.google/blog/gemini-4-argon-our-next-era-of-frontier-intelligence/"
+        }
+      ]
+    }
+  ]
+}
