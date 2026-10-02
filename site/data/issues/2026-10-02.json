@@ -1,0 +1,33 @@
+{
+  "date": "2026-10-02",
+  "label": "10.02",
+  "year": "2026",
+  "coverageDate": "2026-10-01",
+  "coverageLabel": "10.01",
+  "items": [
+    {
+      "category": "人工智能",
+      "title": "通过内部化自生成反馈实现自我改进",
+      "summary": "RLTL;DR通过在训练过程中让模型自身生成反馈，突破了传统强化学习在复杂任务中难以提升性能的瓶颈。在特定数据集上，该方法使模型在无上下文提示时仍能保持12-13%的通过率，且仅需训练4k组数据即可恢复接近完整性能。原文未给出可比较的量化结果",
+      "explanation": "RLTL;DR是一种让AI在失败后自己总结经验的训练方法，就像人遇到问题后自己思考解决办法，而不是依赖外部指导。",
+      "sources": [
+        {
+          "label": "Apple Machine Learning Research",
+          "url": "https://machinelearning.apple.com/research/rltl-dr-self-improvement"
+        }
+      ]
+    },
+    {
+      "category": "AI研究",
+      "title": "DeFA: 用于LLM代理的依赖引导故障归因",
+      "summary": "DeFA通过构建事件依赖图，帮助识别LLM代理执行中的关键错误。该方法在多个数据集上实现高准确率，官方称其能提升后续任务的准确性6-15个百分点。但需注意，该技术适用于长轨迹分析，且对多模态故障归因的有效性仍需进一步验证。",
+      "explanation": "DeFA是一种帮助AI系统找出错误根源的工具，就像医生通过检查病人的症状和病史来确定病因一样，它能帮助AI系统识别出执行过程中哪些步骤导致了错误，并指出责任所在。",
+      "sources": [
+        {
+          "label": "arXiv AI/ML/CL/CV",
+          "url": "https://arxiv.org/abs/2610.01256v1"
+        }
+      ]
+    }
+  ]
+}
