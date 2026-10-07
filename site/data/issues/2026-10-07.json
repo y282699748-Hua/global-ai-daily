@@ -1,0 +1,21 @@
+{
+  "date": "2026-10-07",
+  "label": "10.07",
+  "year": "2026",
+  "coverageDate": "2026-10-06",
+  "coverageLabel": "10.06",
+  "items": [
+    {
+      "category": "人工智能",
+      "title": "EmbeddingGemma 2：开源轻量级多模态嵌入模型",
+      "summary": "EmbeddingGemma 2 是一款开源的多模态嵌入模型，支持文本、图像、音频和视频的统一嵌入空间。该模型拥有7.4亿参数，适用于设备端推理，且存储效率高，可动态缩减输出向量维度。其模块化设计允许根据需求调整参数规模，适合隐私优先的应用场景。",
+      "explanation": "EmbeddingGemma 2 能将不同类型的媒体信息转化为统一的数字表示，帮助设备更高效地处理和理解多种数据形式，就像把不同颜色的笔画成同一支笔一样，让设备能更智能地搜索和连接信息。",
+      "sources": [
+        {
+          "label": "Google DeepMind",
+          "url": "https://deepmind.google/blog/embeddinggemma-2-an-open-lightweight-multimodal-embedding-model/"
+        }
+      ]
+    }
+  ]
+}
