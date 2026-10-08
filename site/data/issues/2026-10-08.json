@@ -1,0 +1,57 @@
+{
+  "date": "2026-10-08",
+  "label": "10.08",
+  "year": "2026",
+  "coverageDate": "2026-10-07",
+  "coverageLabel": "10.07",
+  "items": [
+    {
+      "category": "AI框架",
+      "title": "Agent Lightning v1.0：轻量级代理强化学习框架",
+      "summary": "Agent Lightning v1.0 是一个仅3500行代码的轻量级强化学习框架，能有效提升代理性能。该框架在SWE-bench测试中实现4%的Pass@1准确率提升，仅使用约6000个训练样本。其核心在于将部署时使用的代理工具直接参与强化学习训练，避免重复实现。",
+      "explanation": "这个框架就像给AI代理装上‘助手’，让代理在训练时能直接使用已有的工具和环境，从而更高效地学习和改进。",
+      "sources": [
+        {
+          "label": "Microsoft Research",
+          "url": "https://www.microsoft.com/en-us/research/blog/agent-lightning-v1-0-a-3500-line-lightweight-agentic-rl-framework-for-training-agents-with-real-harnesses/"
+        }
+      ]
+    },
+    {
+      "category": "AI技术",
+      "title": "层间误差归因的快速且稳健的混合精度后训练量化方法",
+      "summary": "该方法通过层间误差分析，实现快速且稳健的混合精度后训练量化，提升模型压缩效率。在清洁校准数据下，其性能与现有方法相当，且在数据受损时更鲁棒，PSNR提升可达7.5dB。实验显示，位分配速度提升从28倍到2570倍。",
+      "explanation": "这项技术像给模型的每个层做‘体检’，找出哪里容易出错，然后有针对性地调整，让模型在压缩后依然运行得更稳、更快。",
+      "sources": [
+        {
+          "label": "arXiv AI/ML/CL/CV",
+          "url": "https://arxiv.org/abs/2610.09877v1"
+        }
+      ]
+    },
+    {
+      "category": "AI模型与训练",
+      "title": "AI模型训练中遗忘现象的定位与干预",
+      "summary": "研究发现，AI模型在持续训练中会遗忘未见过的token的嵌入表示，这种遗忘集中在输出嵌入中较少见的token上。通过调整Adam优化器的epsilon参数，可在训练期间有效减少39.9%的遗忘率。该方法适用于参数规模从1.4B到12B的模型，且无需额外调参。",
+      "explanation": "AI模型在不断学习新数据时，会忘记之前学过的某些信息，就像人看到新事物时可能记不住旧事物一样。研究发现，这种遗忘集中在模型输出中较少见的token上，通过调整训练时的优化参数，可以减少遗忘，让模型更稳定地学习新知识。",
+      "sources": [
+        {
+          "label": "arXiv AI/ML/CL/CV",
+          "url": "https://arxiv.org/abs/2610.09835v1"
+        }
+      ]
+    },
+    {
+      "category": "AI研究",
+      "title": "SkillForge: 通过动态技能生命周期共演技能与智能体",
+      "summary": "SkillForge通过动态技能生命周期管理，使智能体在训练过程中与技能库共同进化。该方法在多个基准测试中实现7.8%的相对提升，同时保持技能库的紧凑性。研究引入了包含5000+条标注记录的SkillFurnace数据集，用于支持技能质量与生命周期管理的研究。",
+      "explanation": "SkillForge就像一个不断优化的技能管理系统，智能体在学习过程中会自动淘汰过时或有害的技能，同时不断更新和优化技能库，让智能体变得更高效和准确。",
+      "sources": [
+        {
+          "label": "arXiv AI/ML/CL/CV",
+          "url": "https://arxiv.org/abs/2610.09832v1"
+        }
+      ]
+    }
+  ]
+}
