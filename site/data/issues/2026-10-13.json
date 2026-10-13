@@ -1,0 +1,33 @@
+{
+  "date": "2026-10-13",
+  "label": "10.13",
+  "year": "2026",
+  "coverageDate": "2026-10-12",
+  "coverageLabel": "10.12",
+  "items": [
+    {
+      "category": "AI模型优化",
+      "title": "ReplaySSM: 优化状态存储提升混合模型解码速度",
+      "summary": "ReplaySSM通过将状态空间模型（SSM）状态拆分为高精度检查点和低精度缓冲区，减少状态内存流量，使解码速度提升1.46倍至1.8倍。在256个批处理大小的NVIDIA Blackwell Ultra B300 GPU上，该技术使120B级模型的推测解码吞吐量提升10倍。但SSM层在服务批量大小下可能成为延迟瓶颈，最多影响10万token的上下文。",
+      "explanation": "ReplaySSM像给电脑的硬盘分层存储一样，把模型运行时的状态分成两个部分：一部分用高精度保存，另一部分用低精度缓存。这样既节省了内存空间，又让模型运行得更快，就像给电脑的硬盘分层存储一样，既节省了内存空间，又让模型运行得更快。",
+      "sources": [
+        {
+          "label": "NVIDIA Technical Blog",
+          "url": "https://developer.nvidia.com/blog/replayssm-rethinking-state-storage-for-faster-hybrid-model-decoding/"
+        }
+      ]
+    },
+    {
+      "category": "AI教育",
+      "title": "模拟学生学习提升AI辅导效果",
+      "summary": "Microsoft Research开发的StudentSim系统通过模拟学生学习行为，帮助AI辅导工具提升教学效果。该系统利用公开的学员数据训练个性化AI学生模拟器，针对不同学科如棋类、写作和数学进行优化。测试显示，基于StudentSim训练的辅导系统在棋类教学中准确率达90.5%，优于传统方法。",
+      "explanation": "这个系统像一个虚拟学生，帮助AI辅导工具学习如何更好地回答问题和提供指导，让AI更懂学生的学习习惯和需求。",
+      "sources": [
+        {
+          "label": "Microsoft Research",
+          "url": "https://www.microsoft.com/en-us/research/blog/simulating-student-learning-for-better-ai-tutoring/"
+        }
+      ]
+    }
+  ]
+}
