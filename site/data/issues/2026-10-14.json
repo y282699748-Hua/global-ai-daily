@@ -1,0 +1,69 @@
+{
+  "date": "2026-10-14",
+  "label": "10.14",
+  "year": "2026",
+  "coverageDate": "2026-10-13",
+  "coverageLabel": "10.13",
+  "items": [
+    {
+      "category": "机器学习",
+      "title": "Mix, Don't Tune: 多语言预训练优于超参数搜索在数据受限场景",
+      "summary": "研究对比了不同方法在150M至1.43B参数规模模型上的表现，发现混合多语言数据能显著提升性能，验证损失提升相当于2-3倍目标数据量，下游任务准确率提升2-13倍。该方法在模型规模增大时效果更明显。原文未给出可比较的量化结果。",
+      "explanation": "这项研究表明，当数据有限时，使用其他语言的数据来训练模型，比调整模型参数更有效。就像用多种食材做菜，混合不同食材能让菜更丰富，而调整调料可能不如混合食材来得有效。",
+      "sources": [
+        {
+          "label": "Apple Machine Learning Research",
+          "url": "https://machinelearning.apple.com/research/mix-dont-tune"
+        }
+      ]
+    },
+    {
+      "category": "机器人技术",
+      "title": "Gemini 4 Argon 机器人控制技术",
+      "summary": "Gemini 4 Argon 能通过纯推理实现87%的性能，控制Boston Dynamics Spot®四足机器人学习新技能，如踩踏脚踏垃圾桶扔掉易拉罐。它能识别任务相关物体，用复合凸分解网格替代粗略边界框，并将人类手部轨迹转为76自由度双臂人形机器人轨迹。该技术可基于手绘草图自动生成物理模拟场景，验证6/6目标倾倒效果。",
+      "explanation": "Gemini 4 Argon 能像人类一样理解物体形状和动作，让机器人学会复杂任务。它能看懂视频中的动作，然后让机器人模仿人类动作完成任务，就像给机器人装上‘大脑’一样。",
+      "sources": [
+        {
+          "label": "Google DeepMind",
+          "url": "https://deepmind.google/blog/gemini-4-argon-for-robotics/"
+        }
+      ]
+    },
+    {
+      "category": "AI应用",
+      "title": "AI代理助力Apache Spark UDFs GPU加速",
+      "summary": "通过AI代理将Spark UDFs转换为GPU加速版本，可实现22倍以上速度提升。某大型科技公司用此方法将30多个生产UDF转换为GPU加速实现，其中一项优化将6000亿行数据处理时间从274.78小时大幅减少。该方法通过消除加速器回退带来的开销，显著提升数据处理效率。",
+      "explanation": "AI代理像一个智能助手，能快速将原本需要CPU处理的数据处理任务转换为GPU处理，让计算速度像闪电一样快，大幅减少处理时间。",
+      "sources": [
+        {
+          "label": "NVIDIA Technical Blog",
+          "url": "https://developer.nvidia.com/blog/rewrite-apache-spark-udfs-gpu-acceleration-ai-agents/"
+        }
+      ]
+    },
+    {
+      "category": "人工智能安全",
+      "title": "Gemini 4 Argon的安全开发与责任",
+      "summary": "Gemini 4 Argon通过改进代码和推理能力，提升了网络安全测试表现，能解决12个端到端的模拟网络攻击场景，比前代提升了近两倍。同时，其在代码基准测试中减少了2%的作弊行为，但官方称仍需独立验证。",
+      "explanation": "Gemini 4 Argon像一把更精准的‘安全盾’，能帮助发现隐藏的漏洞，保护重要数据不被攻击者利用。",
+      "sources": [
+        {
+          "label": "Google DeepMind",
+          "url": "https://deepmind.google/blog/developing-gemini-4-argon-responsibly-and-safely/"
+        }
+      ]
+    },
+    {
+      "category": "人工智能",
+      "title": "Gemini 4 Argon：解决最复杂问题的模型",
+      "summary": "Gemini 4 Argon 能够提升代码提交效率35%并减少代码回滚近三成。它帮助 Chrome 团队从4000万行代码中分离出600万行旧代码，使网页在不同标签页间流畅切换而无需刷新，消除一类浏览器崩溃。该模型在复杂任务如分子结构预测中速度提升3倍，但原文未给出可比较的量化结果。",
+      "explanation": "Gemini 4 Argon 像一台能自动处理复杂任务的超级助手，能帮助开发者更高效地编写和管理代码，让网页在不同窗口间自由切换而不会崩溃，就像给电脑装上了‘智能导航’系统。",
+      "sources": [
+        {
+          "label": "Google DeepMind",
+          "url": "https://deepmind.google/blog/introducing-gemini-4-argon/"
+        }
+      ]
+    }
+  ]
+}
