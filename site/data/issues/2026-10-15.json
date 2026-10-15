@@ -1,0 +1,33 @@
+{
+  "date": "2026-10-15",
+  "label": "10.15",
+  "year": "2026",
+  "coverageDate": "2026-10-14",
+  "coverageLabel": "10.14",
+  "items": [
+    {
+      "category": "人工智能",
+      "title": "三模掩码扩散模型的设计空间",
+      "summary": "该研究提出了一种三模掩码扩散模型，通过统一设计在3B模型规模下实现强表现，处理文本生成、图文任务和音图任务。模型在文本、图像-文本和音频-文本数据上进行预训练，系统分析了多模态扩展规律、模态混合比例和噪声调度等关键因素。",
+      "explanation": "这种模型像一个能同时处理文字、图片和声音的‘多面手’，通过统一的算法结构，在大规模数据上训练后，能更高效地生成多种类型的内容。",
+      "sources": [
+        {
+          "label": "Apple Machine Learning Research",
+          "url": "https://machinelearning.apple.com/research/tri-modal-masked-diffusion"
+        }
+      ]
+    },
+    {
+      "category": "AI应用",
+      "title": "NVIDIA NeMo Gym提升芯片设计AI代理效率",
+      "summary": "NVIDIA NeMo Gym通过优化工具调用效率，帮助Siemens EDA将芯片设计AI代理的错误生成减少66%，同时将基准测试得分从55%提升至95%。该方法通过改进工具描述和技能，减少了代理操作次数和输出token数量，适用于标准单元特性验证任务。原文未给出可比较的量化结果",
+      "explanation": "NVIDIA NeMo Gym像一个智能助手，帮助AI代理更准确地完成复杂任务，减少错误和重复操作，让芯片设计更高效。",
+      "sources": [
+        {
+          "label": "NVIDIA Technical Blog",
+          "url": "https://developer.nvidia.com/blog/optimizing-agent-reliability-and-tool-calling-efficiency-for-chip-design-using-nvidia-nemo-gym/"
+        }
+      ]
+    }
+  ]
+}
