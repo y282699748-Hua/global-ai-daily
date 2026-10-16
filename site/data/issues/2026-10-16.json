@@ -1,0 +1,45 @@
+{
+  "date": "2026-10-16",
+  "label": "10.16",
+  "year": "2026",
+  "coverageDate": "2026-10-15",
+  "coverageLabel": "10.15",
+  "items": [
+    {
+      "category": "人工智能",
+      "title": "Mac Studio支持本地和分布式大语言模型推理",
+      "summary": "在四台Mac Studio集群上，Muse Spark Open每秒生成超过36个token，远超人类阅读速度。该模型支持在单台设备或多台设备间扩展，利用RDMA over Thunderbolt驱动实现高效推理。模型参数规模达816亿，支持最大65536个上下文token，适用于需要大上下文的本地应用。",
+      "explanation": "这项技术让Mac Studio能够快速处理大型语言模型，就像让电脑同时处理多个任务一样，适合需要大量信息处理的场景。",
+      "sources": [
+        {
+          "label": "Apple Machine Learning Research",
+          "url": "https://machinelearning.apple.com/research/mlx-distributed-inference"
+        }
+      ]
+    },
+    {
+      "category": "AI模型",
+      "title": "Meta推出Muse Spark Open，优化代码工作的AI模型",
+      "summary": "Meta推出的Muse Spark Open是一款专为代码工作优化的816B参数混合专家（MoE）模型，拥有42B活跃参数和100万token的上下文窗口。该模型通过top-8路由在256个专家中激活参数，支持在NVIDIA GB300 NVL72上运行，实现更高的首次尝试准确率和可靠的工具调用。100万token的上下文窗口可容纳整个项目，包括复杂依赖和数千个文件，无需分块处理。",
+      "explanation": "Muse Spark Open就像一个能理解整个项目代码的助手，它能处理大量代码，甚至包括旧代码和复杂依赖，帮助用户更高效地进行开发工作。",
+      "sources": [
+        {
+          "label": "NVIDIA Technical Blog",
+          "url": "https://developer.nvidia.com/blog/scale-agentic-coding-workflows-with-metas-muse-spark-open-on-nvidia-gb300-nvl72/"
+        }
+      ]
+    },
+    {
+      "category": "人工智能",
+      "title": "NVIDIA Nemotron 3.5 Super VL 助力专用代理进行多模态推理",
+      "summary": "NVIDIA 的 Nemotron 3.5 Super VL 是一款开放定制的多模态模型，采用 1200 亿参数的混合专家架构，每个 token 激活 120 亿参数，适用于代理任务。相比同规模开源模型，其代理任务吞吐量提升 5 倍，且推理成本降低 40 倍，延迟降低 5 倍。该模型整合推理、指令遵循、工具使用和多模态理解，无需单独视觉语言模型。",
+      "explanation": "NVIDIA 的这款模型就像一个能同时处理文字、图片、文档和视频的超级助手，它能在单块显卡上快速处理复杂任务，比其他类似模型更快、更省资源。",
+      "sources": [
+        {
+          "label": "NVIDIA Technical Blog",
+          "url": "https://developer.nvidia.com/blog/nvidia-nemotron-3-5-super-vl-powers-specialized-agents-with-multimodal-reasoning/"
+        }
+      ]
+    }
+  ]
+}
