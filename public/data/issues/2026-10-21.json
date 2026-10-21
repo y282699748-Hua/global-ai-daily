@@ -1,0 +1,69 @@
+{
+  "date": "2026-10-21",
+  "label": "10.21",
+  "year": "2026",
+  "coverageDate": "2026-10-20",
+  "coverageLabel": "10.20",
+  "items": [
+    {
+      "category": "AI模型训练与推理",
+      "title": "i14在AWS Trainium2上训练和推理Laplace 3B线性注意力模型",
+      "summary": "Laplace 3B是一款线性注意力模型，其递归状态大小固定为29.5MB，与上下文长度无关，避免了传统Transformer模型中键值缓存随上下文增长的问题。该模型在AWS Trainium2上以约120,000 tokens/秒的速度训练，推理时可同时处理1,280个序列，每秒输出11,544个token。",
+      "explanation": "Laplace 3B通过保持递归状态大小不变，让模型在处理不同长度的上下文时，内存使用更稳定，从而提高推理效率和并发能力。",
+      "sources": [
+        {
+          "label": "AWS Machine Learning Blog",
+          "url": "https://aws.amazon.com/blogs/machine-learning/beyond-the-kv-cache-training-and-serving-i14s-laplace-3b-linear-attention-model-on-aws-trainium2-with-native-pytorch/"
+        }
+      ]
+    },
+    {
+      "category": "AI安全",
+      "title": "AWS推出基于X.509 PKI的AI代理身份安全方案",
+      "summary": "该方案通过X.509 PKI技术，结合签名请求封装、用户签名委托声明和RFC 8693受众限定令牌，防止代理间请求伪造。关键在于通过证书生命周期管理确保身份验证，适用于多代理AI系统。原文未给出可比较的量化结果",
+      "explanation": "这个方案就像给AI代理戴上‘身份标签’，确保每个代理在访问数据库或敏感操作时，都能证明自己是谁，防止被冒充。",
+      "sources": [
+        {
+          "label": "AWS Machine Learning Blog",
+          "url": "https://aws.amazon.com/blogs/machine-learning/securing-ai-agent-identity-with-x-509-pki-on-aws/"
+        }
+      ]
+    },
+    {
+      "category": "AI基础设施",
+      "title": "AWS联合AtScale构建语义层支持代理AI",
+      "summary": "该文章介绍了在AWS上使用AtScale构建语义层以支持代理AI的方案。通过在Amazon Redshift上建立受控的客户360模型，并通过AtScale MCP服务器将其暴露给Bedrock AgentCore上的Strands代理。语义层实现了身份传播、基于角色的访问控制、行安全和完整查询审计，而不在提示层面执行。AtScale的语义模型采用维度（维度、层次和度量）而非其他方式构建。",
+      "explanation": "这篇文章讲的是如何在AWS上搭建一个能支持AI代理的系统。通过AtScale这个工具，在Amazon Redshift上建立一个数据模型，然后把这个模型暴露给AI代理，让AI代理可以使用这个模型来处理任务。这个模型有权限控制和审计功能，确保数据安全。",
+      "sources": [
+        {
+          "label": "AWS Machine Learning Blog",
+          "url": "https://aws.amazon.com/blogs/machine-learning/build-a-semantic-layer-for-agentic-ai-on-aws-with-atscale-and-amazon-bedrock-agentcore/"
+        }
+      ]
+    },
+    {
+      "category": "AI模型与应用",
+      "title": "ALTK-Evolve：无需前沿模型，基础客服代理在τ²-bench测试中超越其他模型",
+      "summary": "ALTK-Evolve利用GPT-4.1模型，通过学习客服任务中的行为规则，使基础代理在τ²-bench零售任务中达到67.5%的Pass^4成绩，超越其他零售任务模型。该模型通过分析训练任务中的成功与失败案例，提炼出简短的行为规则，如客户身份验证、交易确认等，并将其添加到后续对话的提示中。在航空任务中，尽管准确率不如其他模型，但其可靠性更高，Pass^4达到45%。",
+      "explanation": "ALTK-Evolve通过让基础模型学习并应用特定规则来提升客服任务的性能，即使不使用更复杂的模型，也能在某些任务上取得优异成绩。",
+      "sources": [
+        {
+          "label": "Hugging Face",
+          "url": "https://huggingface.co/blog/ibm-research/altk-evolve-bc"
+        }
+      ]
+    },
+    {
+      "category": "AI基础设施",
+      "title": "Octave在Amazon Bedrock上构建安全的多租户AI基础",
+      "summary": "Octave利用Cohere Embed v4进行嵌入和Amazon Bedrock AgentCore实现隔离执行，构建了安全的多租户AI基础，支持在20亿受监管文档中进行投诉分类助手的语义搜索，且不跨租户边界。该系统已将每个用例的部署时间缩短50%。",
+      "explanation": "Octave通过隔离技术确保不同客户的数据不被泄露，就像在不同房间中处理不同人的物品一样，确保每个客户的数据安全。",
+      "sources": [
+        {
+          "label": "AWS Machine Learning Blog",
+          "url": "https://aws.amazon.com/blogs/machine-learning/how-octave-built-a-secure-multi-tenant-ai-foundation-on-amazon-bedrock/"
+        }
+      ]
+    }
+  ]
+}
