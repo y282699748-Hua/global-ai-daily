@@ -1,0 +1,57 @@
+{
+  "date": "2026-10-22",
+  "label": "10.22",
+  "year": "2026",
+  "coverageDate": "2026-10-21",
+  "coverageLabel": "10.21",
+  "items": [
+    {
+      "category": "AI系统与架构",
+      "title": "Deep Insight 解决多智能体系统生产中的五大挑战",
+      "summary": "Deep Insight 通过Prompt Caching技术将输入token成本降低90%，同时在生产部署中实现5-10步清晰流程。该系统在相同私有VPC内运行AgentCore、ALB和Fargate任务，解决多智能体系统在可靠操作、安全代码执行等生产挑战。原文未给出可比较的量化结果",
+      "explanation": "Deep Insight 像一个智能助手，能自动处理多个智能体之间的协作问题，让它们在实际应用中更稳定、更安全地运行。",
+      "sources": [
+        {
+          "label": "AWS Machine Learning Blog",
+          "url": "https://aws.amazon.com/blogs/machine-learning/5-production-challenges-in-multi-agent-systems-and-how-deep-insight-solved-them/"
+        }
+      ]
+    },
+    {
+      "category": "AI硬件",
+      "title": "NVIDIA Vera CPU提升AI代理工作负载性能",
+      "summary": "NVIDIA Vera CPU通过88个Olympus核心和第二代可扩展一致性Fabric，实现关键代理任务性能提升2倍。单机架支持超11000个并发代理环境，显著缩短工具调用和代码执行时间。该架构适用于需要高并发和快速单核性能的AI工厂场景。",
+      "explanation": "NVIDIA Vera CPU像一台高速多线程处理器，能同时处理大量AI任务，让AI代理在复杂任务中更高效地工作，就像多把钥匙同时开门一样，快速完成各种操作。",
+      "sources": [
+        {
+          "label": "NVIDIA Technical Blog",
+          "url": "https://developer.nvidia.com/blog/how-nvidia-openshell-reference-architecture-secures-and-governs-ai-agent-workloads-at-scale/"
+        }
+      ]
+    },
+    {
+      "category": "AI 工厂与数字孪生",
+      "title": "AI 工厂数字孪生与代理辅助工作流",
+      "summary": "该技术通过代理辅助工作流构建AI工厂数字孪生，利用NVIDIA Omniverse DSX蓝图提供的参考资产和工作流，将现场计划、设备资产和工程需求整合到一致的模型中。数字孪生支持在固定电力预算内评估计算配置，例如NVIDIA Vera Rubin NVL72推理在MaxP与DSX MaxLPS下的对比，显示DSX MaxLPS可支持400块GPU和1.35倍的token吞吐量。原文未给出可比较的量化结果。",
+      "explanation": "AI工厂数字孪生就像一个虚拟的工厂副本，能帮助规划和优化真实工厂的资源使用。通过代理辅助的工作流，可以更高效地整合各种数据和设计，让团队在虚拟环境中测试和调整方案，就像在游戏里先练兵再实战。",
+      "sources": [
+        {
+          "label": "NVIDIA Technical Blog",
+          "url": "https://developer.nvidia.com/blog/developing-an-ai-factory-digital-twin-with-an-agent-assisted-workflow/"
+        }
+      ]
+    },
+    {
+      "category": "AI模型与算法",
+      "title": "Generalized CycleGRPO提升多模态理解与定位",
+      "summary": "CycleGRPO通过统一强化学习框架，将区域理解与定位结合，提升多模态模型在时空领域的表现。在GroundingSuite上，其整体gIoU从57.2%提升至68.2%，平均gIoU从71%提升至78.7%。在视频任务中，其在Charades上的tIoU达到51.9%，在DOVE上的Temporal Evidence Coverage达到33.3%。",
+      "explanation": "CycleGRPO像一个能同时理解画面和语言的‘双面镜’，既看懂画面中的区域，又能根据语言描述准确定位，就像用镜子同时反射光线和人的轮廓。",
+      "sources": [
+        {
+          "label": "arXiv AI/ML/CL/CV",
+          "url": "https://arxiv.org/abs/2610.29552v1"
+        }
+      ]
+    }
+  ]
+}
