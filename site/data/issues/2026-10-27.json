@@ -1,0 +1,57 @@
+{
+  "date": "2026-10-27",
+  "label": "10.27",
+  "year": "2026",
+  "coverageDate": "2026-10-26",
+  "coverageLabel": "10.26",
+  "items": [
+    {
+      "category": "计算机视觉",
+      "title": "GHARP: 从大规模重建先验实现实时人脸动画",
+      "summary": "该方法通过分离身份阶段和动画阶段，实现从少量输入图像和表情驱动信号实时生成高质量3D人脸动画。在A100 GPU上，其速度可达13倍于传统方法，使用8倍更少的高斯分布。但身份阶段计算成本较高，动画阶段实时运行效率与精度平衡良好。",
+      "explanation": "GHARP像给3D人脸装上‘记忆’和‘表情控制’两个模块，先用大量数据‘记住’人脸的形状和纹理，再根据表情信号‘动起来’，让虚拟人物能快速、流畅地做出表情变化。",
+      "sources": [
+        {
+          "label": "Apple Machine Learning Research",
+          "url": "https://machinelearning.apple.com/research/gharp-head-animation"
+        }
+      ]
+    },
+    {
+      "category": "AI 工具与平台",
+      "title": "NVIDIA Mission Control 2.5 增强 Kubernetes 自动恢复功能",
+      "summary": "NVIDIA Mission Control 2.5 新增对 Kubernetes 工作负载的自动恢复功能，通过三层控制循环实现集群容错。该功能可提升大规模 AI 模型训练的稳定性，但需配合 NVIDIA Run:ai 管理系统使用。原文未给出可比较的量化结果。",
+      "explanation": "NVIDIA 通过自动调整 Kubernetes 任务调度和恢复机制，让系统能自主应对训练 AI 模型时可能出现的故障，就像给电脑装上自动修复程序，避免训练中断。",
+      "sources": [
+        {
+          "label": "NVIDIA Technical Blog",
+          "url": "https://developer.nvidia.com/blog/how-nvidia-mission-control-2-5-brings-autonomous-recovery-to-kubernetes/"
+        }
+      ]
+    },
+    {
+      "category": "AI应用",
+      "title": "AI代理的“Groundhog Day”：使用OpenAI模型的提示缓存模式",
+      "summary": "AI代理在重复任务中需多次读取上下文导致成本高，通过提示缓存技术可减少重复输入。测试显示，使用显式缓存可使输入成本降低61%，隐式缓存使成本降低62%。该技术能帮助代理记住历史信息，避免重复发送相同内容。",
+      "explanation": "AI代理在处理任务时，就像电影《Groundhog Day》中的主角一样，不断重复同一天的经历。每次代理执行动作前，都需要重新输入历史信息，导致成本高。提示缓存技术能让代理记住之前的信息，避免重复输入，节省成本和时间。",
+      "sources": [
+        {
+          "label": "AWS Machine Learning Blog",
+          "url": "https://aws.amazon.com/blogs/machine-learning/groundhog-day-for-ai-agents-prompt-caching-patterns-for-using-openai-models-on-amazon-bedrock/"
+        }
+      ]
+    },
+    {
+      "category": "AI工具",
+      "title": "GPT-6.1 Sol助力CodeRabbit提升复杂代码库安全性",
+      "summary": "CodeRabbit采用GPT-6.1 Sol工具扫描复杂代码库中的安全风险，其安全检测模块帮助开发者审查发现并提出修复方案。该工具未提供具体量化数据，适用场景为代码安全审查，但原文未给出可比较的量化结果。",
+      "explanation": "这个工具像一个智能助手，能帮开发者检查代码中的安全隐患，提出修改建议，但目前没有明确的数据说明它能提升多少安全性。",
+      "sources": [
+        {
+          "label": "OpenAI News",
+          "url": "https://openai.com/index/gpt-6-1-sol-coderabbit-code-security"
+        }
+      ]
+    }
+  ]
+}
