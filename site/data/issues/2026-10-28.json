@@ -1,0 +1,45 @@
+{
+  "date": "2026-10-28",
+  "label": "10.28",
+  "year": "2026",
+  "coverageDate": "2026-10-27",
+  "coverageLabel": "10.27",
+  "items": [
+    {
+      "category": "AI硬件",
+      "title": "NVIDIA优化MoE推理效率",
+      "summary": "NVIDIA通过更换MoE后端库和量化技术，将MoE模型的解码吞吐量提升42%。该模型参数规模达1240亿，每token激活参数51亿，优化后在DGX Spark上实现每轮接受90个token。官方称通过减少内存占用和提升计算效率，显著提升推理速度。",
+      "explanation": "NVIDIA通过改进算法和减少数据量，让AI模型更快地生成文本。就像让一个复杂的机器更快地完成任务，提升效率让AI更高效地处理信息。",
+      "sources": [
+        {
+          "label": "NVIDIA Technical Blog",
+          "url": "https://developer.nvidia.com/blog/3-ways-to-boost-moe-inference-on-nvidia-dgx-spark/"
+        }
+      ]
+    },
+    {
+      "category": "人工智能",
+      "title": "Exowatt 通过 SageMaker 服务器less 模型定制实现更高精度",
+      "summary": "Exowatt 使用 Amazon SageMaker 服务器less 模型定制技术，构建可重复的 AI 管道，为边缘和云两个部署目标生成任务特定的微调模型，实现比前沿模型高 49 倍的低成本高精度。其旗舰产品 Exowatt P3 通过光学透镜捕获太阳能，存储为长时热电池，并通过热机按需发电。随着设备规模扩大至数千台，传统人工监控无法实时覆盖所有站点，将所有操作决策交给前沿模型在经济上不可行。",
+      "explanation": "Exowatt 利用 AI 技术让系统更智能地管理太阳能发电设备，即使在大量设备部署的情况下，也能以更低的成本实现更精准的电力调度。",
+      "sources": [
+        {
+          "label": "AWS Machine Learning Blog",
+          "url": "https://aws.amazon.com/blogs/machine-learning/exowatt-beats-frontier-models-on-accuracy-with-sagemaker-serverless-model-customization/"
+        }
+      ]
+    },
+    {
+      "category": "AI基础设施",
+      "title": "AWS推出SOCI索引技术加速SageMaker AI任务",
+      "summary": "AWS通过SOCI索引技术优化SageMaker AI任务，将容器镜像下载时间缩短至秒级。该技术通过只加载启动容器所需的文件，减少GPU空闲时间达90%。在1.8GB至35GB的镜像规模下，下载时间从48秒到7分钟17秒，速度提升最高达35倍。",
+      "explanation": "AWS的新技术让AI任务启动更快，就像给电脑装上‘快速启动’功能，避免了长时间等待镜像下载，节省时间和费用。",
+      "sources": [
+        {
+          "label": "AWS Machine Learning Blog",
+          "url": "https://aws.amazon.com/blogs/machine-learning/announcing-soci-indexed-images-for-faster-sagemaker-ai-jobs/"
+        }
+      ]
+    }
+  ]
+}
