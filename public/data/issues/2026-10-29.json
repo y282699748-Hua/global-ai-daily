@@ -1,0 +1,45 @@
+{
+  "date": "2026-10-29",
+  "label": "10.29",
+  "year": "2026",
+  "coverageDate": "2026-10-28",
+  "coverageLabel": "10.28",
+  "items": [
+    {
+      "category": "AI平台建设",
+      "title": "基于Amazon Bedrock AgentCore构建代理AI平台",
+      "summary": "文章介绍了如何在Amazon Bedrock AgentCore上构建一个受控的多账户代理AI平台。该平台包含操作模型、控制平面、每个工作流的单元、分离的推理和工具网关，以及一个CI/CD评估流水线，用于在生产前验证每个代理。平台需要确保各团队在安全环境中构建，明确模型和工具的所有权，保持控制一致，避免控制漂移和共享服务成为瓶颈。",
+      "explanation": "这篇文章讲的是如何搭建一个让多个团队都能安全使用AI代理的系统，就像给不同部门的团队提供一个统一的平台，确保他们使用AI时不会出问题，同时还能跟踪成本和性能。",
+      "sources": [
+        {
+          "label": "AWS Machine Learning Blog",
+          "url": "https://aws.amazon.com/blogs/machine-learning/building-an-agentic-ai-platform-on-amazon-bedrock-agentcore/"
+        }
+      ]
+    },
+    {
+      "category": "AI模型",
+      "title": "Gemini 4 Carbon：我们的下一大 frontier 模型",
+      "summary": "Gemini 4 Carbon 在多个关键能力上取得显著提升，尤其在网络安全防御方面表现突出，其在 SEC-bench Pro 中的漏洞检测准确率高达 88.2%。该模型在 WebDev Arena 上以 1768 分位列第四，输出质量与开发成果更优于前代模型。官方称其价格与 Argon 相同，输入 tokens 每百万 2 美元，输出 tokens 每百万 10 美元。",
+      "explanation": "Gemini 4 Carbon 是一款在网络安全和长期任务处理方面领先的 AI 模型，它能更有效地发现和修复漏洞，就像一个更敏锐的网络安全专家，能够更快地识别并阻止潜在威胁。",
+      "sources": [
+        {
+          "label": "Google DeepMind",
+          "url": "https://deepmind.google/blog/gemini-4-carbon-our-next-frontier-model/"
+        }
+      ]
+    },
+    {
+      "category": "AI训练与部署",
+      "title": "AWS推出支持EFA的Ray Train DLC实现分布式训练",
+      "summary": "AWS通过Ray Train DLC实现5B参数模型在8块L4 GPU上的分布式训练。该容器预装了CUDA-through-EFA栈，无需用户自行构建镜像。测试环境使用两个EFA-enabled g6.12xlarge实例，在同一可用区部署，单个Ray worker pod包含4块GPU。原文未给出可比较的量化结果",
+      "explanation": "AWS通过预先配置好的容器，让多个GPU可以协同工作，就像多个电脑共享一个任务一样，让大型AI模型训练更高效。",
+      "sources": [
+        {
+          "label": "AWS Machine Learning Blog",
+          "url": "https://aws.amazon.com/blogs/machine-learning/distributed-training-with-ray-train-dlcs-and-efa-on-eks/"
+        }
+      ]
+    }
+  ]
+}
