@@ -1,0 +1,33 @@
+{
+  "date": "2026-10-30",
+  "label": "10.30",
+  "year": "2026",
+  "coverageDate": "2026-10-29",
+  "coverageLabel": "10.29",
+  "items": [
+    {
+      "category": "AI研究",
+      "title": "微软研究聚焦：ForkPilot降低AI处理需求",
+      "summary": "微软研发的ForkPilot在六个基准测试中表现优异，处理效率提升59%。该框架通过自我优化策略，帮助代理在长周期任务中更高效地解决问题。但其效果依赖于工具的使用，且未明确说明适用的具体行业或场景。",
+      "explanation": "ForkPilot就像一个能自我改进的助手，它能帮助电脑在处理复杂任务时更省力，但需要借助其他工具才能发挥最大作用。",
+      "sources": [
+        {
+          "label": "Microsoft Research",
+          "url": "https://www.microsoft.com/en-us/research/podcast/microsoft-research-focus-edition-97/"
+        }
+      ]
+    },
+    {
+      "category": "AI模型与部署",
+      "title": "NVIDIA Nemotron 3.5 Super VL 模型在 AWS 上的部署与应用",
+      "summary": "NVIDIA Nemotron 3.5 Super VL 是一个120B参数的混合专家模型，每token激活12B参数，支持文本、图像、文档和视频理解。该模型在AWS EKS和SageMaker HyperPod EKS上部署，可实现多模态任务处理。官方称其在Hermes Bench上达到63.44%的性能。",
+      "explanation": "这个模型就像一个能同时处理文字、图片和视频的超级助手，它能理解多种类型的信息，并在AWS平台上高效运行。",
+      "sources": [
+        {
+          "label": "AWS Machine Learning Blog",
+          "url": "https://aws.amazon.com/blogs/machine-learning/accelerate-agentic-ai-with-nvidia-nemotron-models-on-amazon-eks-and-sagemaker-hyperpod-eks/"
+        }
+      ]
+    }
+  ]
+}
