@@ -1,0 +1,45 @@
+{
+  "date": "2026-11-03",
+  "label": "11.03",
+  "year": "2026",
+  "coverageDate": "2026-11-02",
+  "coverageLabel": "11.02",
+  "items": [
+    {
+      "category": "AI应用",
+      "title": "Circle K利用Amazon Bedrock缩短DevOps事件响应时间",
+      "summary": "Circle K通过构建基于Amazon Bedrock的智能分拣系统，将DevOps事件响应时间从45-60分钟缩短至15分钟以内。该系统能快速识别异常，如服务HTTP 5xx错误率超过5%持续3分钟。响应过程从警报到Slack消息仅需5-15分钟，大幅提高问题处理效率。原文未给出可比较的量化结果",
+      "explanation": "Circle K利用AI技术快速判断系统异常，让工程师能在15分钟内找到问题根源，比以前节省了大部分时间。",
+      "sources": [
+        {
+          "label": "AWS Machine Learning Blog",
+          "url": "https://aws.amazon.com/blogs/machine-learning/how-circle-k-accelerated-devops-incident-triage-to-under-15-minutes-with-amazon-bedrock/"
+        }
+      ]
+    },
+    {
+      "category": "AI训练与优化",
+      "title": "NVIDIA推出自动化工作负载恢复功能提升分布式训练稳定性",
+      "summary": "NVIDIA的Recovery功能通过自动化恢复机制，在训练集群中实现工作负载的持续运行。该功能在监控中发现每天约200个任务，检测到约8550次异常，平均检测和恢复动作延迟分别为69秒和94秒。即使单个GPU故障概率为99.9%，但跨10000个GPU的任务仍可能因故障中断。这表明大型长时间运行的任务更容易受到硬件故障影响。",
+      "explanation": "NVIDIA的这项技术就像一个自动修复系统，当训练过程遇到小故障时，能快速恢复，避免整个训练过程中断，尤其对需要大量GPU资源的长时间任务更为重要。",
+      "sources": [
+        {
+          "label": "NVIDIA Technical Blog",
+          "url": "https://developer.nvidia.com/blog/keep-distributed-training-running-with-automated-workload-recovery/"
+        }
+      ]
+    },
+    {
+      "category": "AI应用",
+      "title": "Amazon推出多模态嵌入与Bedrock AgentCore结合的工程智能",
+      "summary": "Amazon利用Nova多模态嵌入将航空航天组件替换评估从数天缩短至分钟。通过Bedrock AgentCore和Strands Agents SDK，系统能快速整合替换证据，但需确保工程师仍为决策者。嵌入维度为1024，图像处理时会去除重复内容以提高效率。原文未给出可比较的量化结果",
+      "explanation": "这项技术帮助工程师快速判断飞机部件是否可以替换，以前需要几天时间去比对各种文档，现在几分钟就能完成，但最终还是需要工程师做决定。",
+      "sources": [
+        {
+          "label": "AWS Machine Learning Blog",
+          "url": "https://aws.amazon.com/blogs/machine-learning/agentic-engineering-intelligence-with-amazon-nova-multimodal-embeddings-and-amazon-bedrock-agentcore/"
+        }
+      ]
+    }
+  ]
+}
