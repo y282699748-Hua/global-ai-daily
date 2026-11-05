@@ -1,0 +1,57 @@
+{
+  "date": "2026-11-05",
+  "label": "11.05",
+  "year": "2026",
+  "coverageDate": "2026-11-04",
+  "coverageLabel": "11.04",
+  "items": [
+    {
+      "category": "AI 评估与决策模型",
+      "title": "使用决策模型与Amazon Bedrock AgentCore评估",
+      "summary": "Amazon Bedrock AgentCore支持自定义评估器，包括开源决策模型Strands Decider 2B（20亿参数）和TypeSafe的Jev。该模型能处理选择题和评分题，通过结构化输入和固定答案集返回概率分布，适用于需要精确判断的场景。原文未给出可比较的量化结果。",
+      "explanation": "这种模型像一个精确的裁判，能根据固定规则判断答案是否符合要求，比如检查回复是否符合政策，而不是像普通AI那样可能因运行环境变化而产生不确定性。",
+      "sources": [
+        {
+          "label": "AWS Machine Learning Blog",
+          "url": "https://aws.amazon.com/blogs/machine-learning/use-decision-models-with-amazon-bedrock-agentcore-evaluations/"
+        }
+      ]
+    },
+    {
+      "category": "AI 工厂管理",
+      "title": "NVIDIA 利用 AI 代理优化 AI 工厂运营",
+      "summary": "NVIDIA 通过 AI 代理协调多个子代理，实现对计算、网络、硬件和调度层的故障检测与根因分析。该框架基于 NemoClaw 框架和 OpenShell 构建，运行在 DGX H100、B200 和 GB300 集群上，提供可视化推荐界面。该技术可帮助 Site Reliability Engineers 更高效地处理多租户环境下的复杂问题。",
+      "explanation": "NVIDIA 开发了一种 AI 系统，能自动识别和解决 AI 工厂中的问题，就像一个智能助手一样，能查看多个系统层的运行情况，并给出解决方案。",
+      "sources": [
+        {
+          "label": "NVIDIA Technical Blog",
+          "url": "https://developer.nvidia.com/blog/how-nvidia-uses-ai-agents-to-streamline-ai-factory-operations/"
+        }
+      ]
+    },
+    {
+      "category": "AI工具",
+      "title": "NVIDIA NeMo 用于将代理失败转化为测试并利用修复",
+      "summary": "NVIDIA NeMo Compass 通过分析代理 traces 和评估证据，识别重复问题并优先改进。在 Dassault Systèmes 工程案例中，该工具将错误的工具调用从 142 降至零，并在六个场景中使整体评估分数提升 28%。该工具能帮助优化代理提示、工具、模型、内存和技能，提升系统性能。",
+      "explanation": "NVIDIA NeMo 通过分析代理运行时的错误和表现，找出问题所在并优化系统，就像医生通过检查病人的症状来诊断和治疗疾病一样。",
+      "sources": [
+        {
+          "label": "NVIDIA Technical Blog",
+          "url": "https://developer.nvidia.com/blog/use-nvidia-nemo-to-turn-agent-failures-into-tests-and-harness-fixes/"
+        }
+      ]
+    },
+    {
+      "category": "企业服务",
+      "title": "Indegene 借助 AWS 构建企业数据质量智能代理",
+      "summary": "Indegene 通过 AWS 构建 LLM 驱动的数据质量智能代理，可自动生成适应性数据质量规则，验证后生成可运行的 SQL 和 Python 代码，帮助生命科学企业实现全球规模的数据质量管理。该系统能验证如药品市场份额总和不超过 100% 等关键指标，但原文未给出可比较的量化结果。",
+      "explanation": "这个系统像一个自动检查员，能根据数据内容自动制定检查规则，比如确保药品在某个地区的市场份额不超过 100%，还能检查医生开药是否符合专业资格，帮助生命科学公司更高效地管理数据质量。",
+      "sources": [
+        {
+          "label": "AWS Machine Learning Blog",
+          "url": "https://aws.amazon.com/blogs/machine-learning/how-indegene-is-modernizing-and-scaling-enterprise-data-quality-in-life-sciences/"
+        }
+      ]
+    }
+  ]
+}
