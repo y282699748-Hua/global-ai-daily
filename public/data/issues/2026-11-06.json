@@ -1,0 +1,21 @@
+{
+  "date": "2026-11-06",
+  "label": "11.06",
+  "year": "2026",
+  "coverageDate": "2026-11-05",
+  "coverageLabel": "11.05",
+  "items": [
+    {
+      "category": "AI视频生成",
+      "title": "Gemini Omni 1.2 Flash支持15秒视频生成与编辑",
+      "summary": "Gemini Omni 1.2 Flash支持15秒视频生成和编辑，提供更强的连贯性，价格降低30%。该版本支持多轮对话式编辑，允许更快的调整，且生成成本更低。适用于专业项目，但原文未给出可比较的量化结果。",
+      "explanation": "Gemini Omni 1.2 Flash能快速生成15秒视频，并且在编辑时能保持内容一致，价格也比之前便宜了30%。用户可以通过对话方式逐步调整视频，节省时间成本。",
+      "sources": [
+        {
+          "label": "Google DeepMind",
+          "url": "https://deepmind.google/blog/gemini-omni-12-flash-fast-and-cost-effective-with-longer-clips/"
+        }
+      ]
+    }
+  ]
+}
