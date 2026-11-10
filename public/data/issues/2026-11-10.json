@@ -1,0 +1,45 @@
+{
+  "date": "2026-11-10",
+  "label": "11.10",
+  "year": "2026",
+  "coverageDate": "2026-11-09",
+  "coverageLabel": "11.09",
+  "items": [
+    {
+      "category": "AI 系统与管理",
+      "title": "OpenAI 推出 Control Room 系统以监控和停止模型工作负载",
+      "summary": "OpenAI 开发的 Control Room 系统能够监控研究基础设施中的模型工作负载，并在安全或安全问题出现时迅速停止它们。该系统旨在提高研究环境中的安全性和可控性。原文未给出可比较的量化结果",
+      "explanation": "Control Room 类似于一个中央控制台，可以随时暂停或停止正在运行的AI模型，确保在出现潜在风险时能够及时采取措施。",
+      "sources": [
+        {
+          "label": "OpenAI News",
+          "url": "https://openai.com/index/control-room"
+        }
+      ]
+    },
+    {
+      "category": "AI架构",
+      "title": "可插拔的代理AI框架：基于Amazon Bedrock AgentCore的七层可组合企业代理AI参考架构",
+      "summary": "该框架通过七层可组合架构，解决企业代理AI从原型到生产环境的扩展问题。各层稳定接口允许技术替换，避免整体重设计。官方称其能处理数千并发请求，确保系统在高负载下可靠运行，但原文未给出可比较的量化结果。",
+      "explanation": "这个框架就像一个模块化的建筑，每个部分都可以独立更换，让AI系统在面对大量用户请求时更稳定和高效。",
+      "sources": [
+        {
+          "label": "AWS Machine Learning Blog",
+          "url": "https://aws.amazon.com/blogs/machine-learning/pluggable-agentic-ai-framework-a-seven-layer-composable-enterprise-agentic-ai-reference-architecture-on-amazon-bedrock-agentcore/"
+        }
+      ]
+    },
+    {
+      "category": "机器人技术",
+      "title": "NVIDIA Holoscan 5实现机器人手臂的失重感",
+      "summary": "NVIDIA Holoscan 5通过三个自定义操作符构建的重力补偿循环，以400Hz频率读取关节状态并计算逆动力学，向Seeed Studio reBot Arm B601-DM发送扭矩指令。该技术能有效降低控制延迟，适用于高吞吐量的GPU算法和AI推理。原文未给出可比较的量化结果。",
+      "explanation": "NVIDIA Holoscan 5让机器人手臂在移动时能自动调整力度，就像手把手引导它时， motors只提供足够的力让机器人保持直立，这种感觉就像在空中轻飘飘的。",
+      "sources": [
+        {
+          "label": "NVIDIA Technical Blog",
+          "url": "https://developer.nvidia.com/blog/make-a-robot-arm-feel-weightless-with-nvidia-holoscan-5/"
+        }
+      ]
+    }
+  ]
+}
