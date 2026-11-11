@@ -1,0 +1,33 @@
+{
+  "date": "2026-11-11",
+  "label": "11.11",
+  "year": "2026",
+  "coverageDate": "2026-11-10",
+  "coverageLabel": "11.10",
+  "items": [
+    {
+      "category": "自动驾驶",
+      "title": "NVIDIA Alpamayo 2 Edge：在车载计算与延迟限制内运行推理模型",
+      "summary": "NVIDIA Alpamayo 2 Edge是一款20亿参数的推理模型，专为在NVIDIA DRIVE AGX Thor上实时运行设计。通过闭合环强化学习，其驾驶性能比无闭合环强化学习的最优检查点提升48.9%。模型在DRIVE AGX Thor上实现160-190毫秒的像素到轨迹延迟。该模型基于NVIDIA Cosmos 3 Edge的20亿参数Nemotron推理架构，结合扩散动作专家，利用环绕摄像头观测、时间上下文和导航输入生成因果链推理和未来驾驶轨迹。",
+      "explanation": "这款模型就像一个能实时分析路况并做出驾驶决策的智能助手，它能在车载系统有限的计算能力和延迟限制下，快速判断路况并规划行驶路线。",
+      "sources": [
+        {
+          "label": "NVIDIA Technical Blog",
+          "url": "https://developer.nvidia.com/blog/running-av-reasoning-models-within-onboard-compute-and-latency-limits/"
+        }
+      ]
+    },
+    {
+      "category": "AI应用",
+      "title": "Trovata利用Amazon Bedrock和AgentCore构建自主财务代理",
+      "summary": "Trovata通过Amazon Bedrock和AgentCore构建AI原生财务管理平台，直接连接超过10000家银行，实现企业全球财务数据整合。其客户已实现每年100万美元的成本节约，会计团队每日节省5小时，年度TMS成本减少77%。该系统将财务报告时间从小时或天缩短至分钟级，显著提升决策效率。",
+      "explanation": "Trovata利用AI技术，像一个智能助手一样自动处理企业的财务数据，让财务工作更高效、更准确，减少人工错误和时间消耗。",
+      "sources": [
+        {
+          "label": "AWS Machine Learning Blog",
+          "url": "https://aws.amazon.com/blogs/machine-learning/autonomous-treasury-agents-how-trovata-built-an-ai-native-solution-on-amazon-bedrock-and-agentcore/"
+        }
+      ]
+    }
+  ]
+}
