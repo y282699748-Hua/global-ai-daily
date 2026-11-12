@@ -1,0 +1,69 @@
+{
+  "date": "2026-11-12",
+  "label": "11.12",
+  "year": "2026",
+  "coverageDate": "2026-11-11",
+  "coverageLabel": "11.11",
+  "items": [
+    {
+      "category": "AI工具",
+      "title": "Gemini Decisions API: 快速、校准的多模态决策",
+      "summary": "Gemini Decisions API 可在单次通过中评估1000个问题，支持文本、图片、音频、视频和PDF等多模态输入。该工具通过单次处理返回概率和置信度评分，端到端延迟仅150-250毫秒，每100万输入token收费10美元。官方称其在16K token上下文内保持稳定性能，适用于快速决策场景。",
+      "explanation": "Gemini Decisions API 像一个快速的‘多模态判断官’，能同时处理多种类型的信息，快速给出答案的可信度评分，帮助用户快速做出决策。”}}</think>",
+      "sources": [
+        {
+          "label": "Google AI",
+          "url": "https://blog.google/innovation-and-ai/technology/developers-tools/gemini-decisions-api/"
+        }
+      ]
+    },
+    {
+      "category": "人工智能",
+      "title": "AlphaGenome 2：解析细胞如何读取DNA以更好地理解疾病",
+      "summary": "AlphaGenome 2能预测DNA序列及其变异对特定细胞类型的影响，帮助科学家发现疾病驱动因素。该模型基于超过1亿个细胞数据，覆盖68种组织，可预测90亿种单字母DNA变化。其核心在于将静态细胞图谱转化为预测工具，适用于研究基因变异与疾病的关系。",
+      "explanation": "AlphaGenome 2就像一个能读懂DNA密码的超级工具，它能帮助科学家理解为什么某些基因变异会导致疾病，就像医生通过检查细胞来诊断病情。",
+      "sources": [
+        {
+          "label": "Google DeepMind",
+          "url": "https://deepmind.google/blog/alphagenome-2-deciphering-how-cells-read-dna-to-better-understand-disease/"
+        }
+      ]
+    },
+    {
+      "category": "AI评估工具",
+      "title": "UAEF：跨框架的AI代理闭环评估系统",
+      "summary": "UAEF通过统一格式处理不同框架的代理执行轨迹，使用36项指标在7个维度进行评分，帮助团队对比代理版本并发现退化问题。该系统支持电信、医疗和金融等行业12家组织在发布前评估AI代理，且能自动标记回归问题的严重程度，如轻微（5-10%）、中度（10-20%）或严重（超过20%）",
+      "explanation": "UAEF就像一个AI代理的体检系统，能自动检查不同框架下的代理表现，发现性能下降的问题，帮助团队确保AI系统在发布前稳定可靠。",
+      "sources": [
+        {
+          "label": "AWS Machine Learning Blog",
+          "url": "https://aws.amazon.com/blogs/machine-learning/uaef-a-framework-agnostic-system-for-closed-loop-evaluation-of-ai-agents/"
+        }
+      ]
+    },
+    {
+      "category": "AI基础设施",
+      "title": "DXC Technology构建基于Amazon Bedrock的多模型AI基础架构",
+      "summary": "DXC Technology利用Amazon Bedrock构建多模型AI基础架构，该架构通过60年的运维经验与安全机制，实现了对AI代理的全面监管。官方称其将平均故障解决时间缩短了95%，适用于需要高可靠性和治理的监管组织。",
+      "explanation": "这个AI基础架构就像一个强大的后台系统，它不仅提供AI模型，还确保这些模型被安全、可控地使用，防止AI代理做出不符合任务要求的行动。",
+      "sources": [
+        {
+          "label": "AWS Machine Learning Blog",
+          "url": "https://aws.amazon.com/blogs/machine-learning/how-dxc-technology-built-a-multi-model-ai-substrate-on-amazon-bedrock/"
+        }
+      ]
+    },
+    {
+      "category": "人工智能",
+      "title": "AWS推出基于使用量的SageMaker双向流推理定价模式",
+      "summary": "AWS推出基于使用量的SageMaker双向流推理定价模式，该模式允许模型提供商根据客户实际消耗的实时流数据进行计费。根据材料，若产品按秒计费，12分钟的音频将产生720秒的计费单位。但需注意，仅开放连接本身并不定义计费音频量，需通过特定的WebSocket连接和头部信息进行计费。",
+      "explanation": "这种定价模式类似于水电费，用户只支付实际使用的资源量，而不是预付费的固定费用。对于实时语音AI应用来说，这种模式能更准确地反映用户的实际消耗。",
+      "sources": [
+        {
+          "label": "AWS Machine Learning Blog",
+          "url": "https://aws.amazon.com/blogs/machine-learning/introducing-usage-based-pricing-for-amazon-sagemaker-ai-bidirectional-streaming/"
+        }
+      ]
+    }
+  ]
+}
