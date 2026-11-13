@@ -1,0 +1,33 @@
+{
+  "date": "2026-11-13",
+  "label": "11.13",
+  "year": "2026",
+  "coverageDate": "2026-11-12",
+  "coverageLabel": "11.12",
+  "items": [
+    {
+      "category": "AI应用",
+      "title": "Natera利用Amazon Bedrock AgentCore构建实验室操作AI系统",
+      "summary": "Natera使用Amazon Bedrock AgentCore构建了SWARM系统，该系统能将实验室操作知识规模化部署，实现支持工单的96.2%自动化处理，且首次响应速度提升130倍。系统通过批量处理100个文档生成嵌入向量，平衡索引效率与API调用限制。",
+      "explanation": "SWARM就像一个智能助手，能自动处理实验室的日常运维问题，快速找到解决方案，减少人工干预，让实验室运作更高效。",
+      "sources": [
+        {
+          "label": "AWS Machine Learning Blog",
+          "url": "https://aws.amazon.com/blogs/machine-learning/how-natera-designed-an-agentic-ai-system-for-lab-ops-with-amazon-bedrock-agentcore/"
+        }
+      ]
+    },
+    {
+      "category": "AI系统",
+      "title": "AWS推出A2A协议构建跨组织多智能体系统",
+      "summary": "AWS通过A2A协议实现跨组织多智能体系统协作，使用双向OAuth认证调用，双方不依赖对方的框架或SDK。系统需配置两个AWS账户，部署测试环境需约20分钟。测试通过需满足回复包含合规发现、专属代码及API日志显示200状态码。",
+      "explanation": "AWS让不同公司之间的智能体像同事一样合作，通过安全的认证方式互相调用，不需要对方的工具，就像不同公司的人用通用语言交流一样。",
+      "sources": [
+        {
+          "label": "AWS Machine Learning Blog",
+          "url": "https://aws.amazon.com/blogs/machine-learning/build-composable-interoperable-multi-agent-systems-with-a2a-on-aws/"
+        }
+      ]
+    }
+  ]
+}
