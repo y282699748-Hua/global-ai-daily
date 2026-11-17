@@ -1,0 +1,57 @@
+{
+  "date": "2026-11-17",
+  "label": "11.17",
+  "year": "2026",
+  "coverageDate": "2026-11-16",
+  "coverageLabel": "11.16",
+  "items": [
+    {
+      "category": "AI安全",
+      "title": "OpenAI 开始嵌入评估测试",
+      "summary": "OpenAI 与 Apollo Research、METR、Transluce 和 Goodfire 合作，对模型对齐、安全防护和监控系统进行独立评估。该测试旨在确保 AI 系统的安全性和可靠性，但原文未给出可比较的量化结果。",
+      "explanation": "这项测试就像给 AI 系统做体检，检查它是否安全、可靠，确保不会对用户造成伤害。",
+      "sources": [
+        {
+          "label": "OpenAI News",
+          "url": "https://openai.com/index/our-first-phase-of-embedded-assessments"
+        }
+      ]
+    },
+    {
+      "category": "AI模型",
+      "title": "NVIDIA Nemotron 通过训练提升科学领域准确性",
+      "summary": "NVIDIA的Nemotron模型在科学领域通过训练提升了准确性。在药物代谢预测中，监督微调使准确率提升12%，强化学习后训练进一步提升17%。该模型在16,384个token的输出预算下表现优异。",
+      "explanation": "NVIDIA的Nemotron模型像一个能理解科学问题的助手，通过额外训练让其在预测药物代谢时更准确。就像让一个学生通过复习和练习提高考试成绩一样，Nemotron通过训练变得更擅长处理科学问题。",
+      "sources": [
+        {
+          "label": "NVIDIA Technical Blog",
+          "url": "https://developer.nvidia.com/blog/post-training-nvidia-nemotron-to-increase-accuracy-in-your-scientific-domain/"
+        }
+      ]
+    },
+    {
+      "category": "AI硬件",
+      "title": "NVIDIA Vera Rubin NVL72在代理推理任务中表现突出",
+      "summary": "NVIDIA Vera Rubin NVL72在代理推理任务中表现出色，其每千瓦的吞吐量是NVIDIA GB300 NVL72的10倍以上，且在每秒每用户50个token的最低交互性下仍保持高效。在Kimi K3、DeepSeek-V4.1-Flash和Qwen3.6-35B-A3B模型上，其吞吐量和交互性均比GB300 NVL72高5到10倍。原文未给出可比较的量化结果",
+      "explanation": "代理推理需要系统处理复杂的对话历史和生成多种推理内容，NVIDIA Vera Rubin NVL72通过更高效的硬件设计，能在处理这类复杂任务时提供更高的性能和效率。",
+      "sources": [
+        {
+          "label": "NVIDIA Technical Blog",
+          "url": "https://developer.nvidia.com/blog/nvidia-vera-rubin-nvl72-leads-agentic-inference-performance-on-mlperf-endpoints-v1-0/"
+        }
+      ]
+    },
+    {
+      "category": "AI硬件",
+      "title": "NVIDIA Vera Rubin NVL72实现两倍黑well Ultra性能",
+      "summary": "NVIDIA Vera Rubin NVL72在MLPerf Training v6.1中首次亮相，训练六项基准测试最快，性能每GPU达黑well Ultra的两倍。在DeepSeek-V3 671B混合专家基准测试中，使用1024块GPU仅需4.14分钟，将GB300 NVL72的8.03分钟时间减半。该平台在扩展至1024块GPU时保持超过97%的扩展效率，得益于3.6TB/s的铜NVLink 6脊柱和ConnectX-9 SuperNICs。",
+      "explanation": "NVIDIA Vera Rubin NVL72是一种高性能AI训练芯片，能在相同条件下将训练时间缩短一半，就像让电脑更快地完成任务一样。",
+      "sources": [
+        {
+          "label": "NVIDIA Technical Blog",
+          "url": "https://developer.nvidia.com/blog/nvidia-vera-rubin-nvl72-achieves-up-to-2x-blackwell-ultra-performance-in-mlperf-training-v6-1/"
+        }
+      ]
+    }
+  ]
+}
