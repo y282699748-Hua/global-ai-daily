@@ -1,0 +1,33 @@
+{
+  "date": "2026-11-19",
+  "label": "11.19",
+  "year": "2026",
+  "coverageDate": "2026-11-18",
+  "coverageLabel": "11.18",
+  "items": [
+    {
+      "category": "AI硬件与工具",
+      "title": "NVIDIA Cosmos平台实现物理AI数据集的高效生成",
+      "summary": "NVIDIA Cosmos平台通过两个提示词即可构建训练-ready的物理AI数据集，相比传统方法，数据集生成速度提升60倍，成本降低45倍。该平台利用风格迁移技术生成视频，并通过物理合理性检查确保生成内容的可信度。数据生成成本约为每条视频2.66美元GPU计算费用，每日可生成130条边缘案例视频。",
+      "explanation": "NVIDIA Cosmos平台像一个自动化工厂，能快速生成高质量的AI训练数据，就像用两个指令就能让机器自动生产出符合物理规律的视频，大大降低了数据准备的难度和成本。",
+      "sources": [
+        {
+          "label": "NVIDIA Technical Blog",
+          "url": "https://developer.nvidia.com/blog/build-training-ready-physical-ai-datasets-with-two-prompts-in-nvidia-cosmos/"
+        }
+      ]
+    },
+    {
+      "category": "AI基础设施",
+      "title": "Salesforce利用跨区域推理路由提升全球模型服务",
+      "summary": "Salesforce通过Amazon SageMaker AI实现跨区域推理路由，将模型服务扩展至30多个全球区域。该技术根据用户请求来源自动分配模型服务，确保高可用性。但模型在不同区域独立部署，可能导致容量分散和流量波动问题。",
+      "explanation": "Salesforce通过让模型在不同地区就近运行，确保用户请求能快速找到最近的模型服务，就像快递员根据用户位置选择最近的配送点，提升响应速度和稳定性。",
+      "sources": [
+        {
+          "label": "AWS Machine Learning Blog",
+          "url": "https://aws.amazon.com/blogs/machine-learning/how-salesforce-is-advancing-global-scale-model-serving-with-cross-region-inference-routing-in-amazon-sagemaker-ai/"
+        }
+      ]
+    }
+  ]
+}
