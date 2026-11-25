@@ -1,0 +1,45 @@
+{
+  "date": "2026-11-25",
+  "label": "11.25",
+  "year": "2026",
+  "coverageDate": "2026-11-24",
+  "coverageLabel": "11.24",
+  "items": [
+    {
+      "category": "AI服务",
+      "title": "亚马逊推出Bedrock可信访问API，提供企业级安全与数据控制",
+      "summary": "亚马逊推出Bedrock可信访问API，为Claude模型提供企业级安全和数据控制。该API允许企业客户在严格的数据合规要求下使用模型，如医疗、金融和法律行业。客户可随时取消访问权限，但若密钥或存储桶失效，Bedrock将在24小时内停止服务。部分失败情况可重试72小时。",
+      "explanation": "这项技术让企业能够安全地使用AI模型，就像在银行里存钱一样，确保数据不被滥用。",
+      "sources": [
+        {
+          "label": "AWS Machine Learning Blog",
+          "url": "https://aws.amazon.com/blogs/machine-learning/introducing-the-amazon-bedrock-trusted-access-api-with-anthropics-enterprise-frontier-safeguards-and-enterprise-data-controls/"
+        }
+      ]
+    },
+    {
+      "category": "AI与生物技术",
+      "title": "GPT-6模型展现内在蛋白质设计能力",
+      "summary": "GPT-6模型在蛋白质设计任务中表现优异，实验室测试显示其能设计出与目标结合的蛋白质。模型在五个目标上均显示出结合证据，其中对PD-L1等癌症相关蛋白的结合效率达85%。但原文未给出可比较的量化结果。",
+      "explanation": "GPT-6模型能像拼图一样，根据指令设计蛋白质的结构和序列，帮助科学家找到能与特定目标结合的蛋白质，这可能有助于癌症治疗等医学领域。",
+      "sources": [
+        {
+          "label": "OpenAI News",
+          "url": "https://openai.com/index/gpt-6-models-demonstrate-intrinsic-protein-design-capabilities"
+        }
+      ]
+    },
+    {
+      "category": "AI硬件与框架",
+      "title": "NVIDIA Cosmos 3 在本地设备上运行的实现方法",
+      "summary": "NVIDIA Cosmos 3 Nano通过将模型权重存储在系统内存中并按需传输到GPU，可在仅12GB VRAM的GPU上运行。FP8检查点与混合精度技术降低峰值GPU内存使用，同时保持BF16注意力层的计算精度。测试显示RTX 5070在720p文本到视频生成中使用2,624.94 GiB峰值内存。",
+      "explanation": "NVIDIA Cosmos 3 Nano像一个能生成视频的AI基础模型，通过智能管理内存，让即使内存较小的电脑也能运行复杂的视频生成任务。",
+      "sources": [
+        {
+          "label": "NVIDIA Technical Blog",
+          "url": "https://developer.nvidia.com/blog/how-to-run-nvidia-cosmos-3-on-local-ai-devices-using-hugging-face-diffusers/"
+        }
+      ]
+    }
+  ]
+}
