@@ -1,0 +1,45 @@
+{
+  "date": "2026-11-26",
+  "label": "11.26",
+  "year": "2026",
+  "coverageDate": "2026-11-25",
+  "coverageLabel": "11.25",
+  "items": [
+    {
+      "category": "AI硬件",
+      "title": "NVIDIA优化RTX Blackwell显卡的NVFP4注意力计算",
+      "summary": "NVIDIA通过注册回收技术优化RTX Blackwell显卡的NVFP4注意力计算，使4位矩阵乘法在Tensor Core中的吞吐量高于BF16。该技术通过重用注册区减少空闲时间，将延迟降低至1.64倍。在LongLive等工作负载中，推理延迟减少15.34%。原文未给出可比较的量化结果",
+      "explanation": "这项技术让显卡更高效地处理注意力计算，就像让电脑更快地处理复杂任务一样，特别是在处理长序列数据时，能显著减少计算时间。",
+      "sources": [
+        {
+          "label": "NVIDIA Technical Blog",
+          "url": "https://developer.nvidia.com/blog/how-to-optimize-nvfp4-attention-on-nvidia-rtx-blackwell-through-register-recycling/"
+        }
+      ]
+    },
+    {
+      "category": "AI模型",
+      "title": "Inkling 2 Mini 在单块 RTX PRO 6000 上的推理测试",
+      "summary": "Inkling 2 Mini 拥有约260亿参数（每个token激活30亿），支持多模态输入和100万token上下文窗口。该模型在人工分析智能指数v5中领先其重量级类别，并在32项48项基准测试中表现优异，成为在中等硬件上进行编码、工具使用和推理的开源选项。官方称其在单块RTX PRO 6000上实现单用户解码速度从136到190，但需注意其架构兼容性可能与NVIDIA B200和GB300 GPU不同。",
+      "explanation": "Inkling 2 Mini 是一种特殊的AI模型，它能处理多种类型的信息，并且在有限的硬件上也能高效运行。这种模型在测试中表现很好，尤其适合需要编码和推理的任务，但它的性能可能依赖于特定的硬件配置。",
+      "sources": [
+        {
+          "label": "Hugging Face",
+          "url": "https://huggingface.co/blog/inkling-2-mini-inference-hillclimb"
+        }
+      ]
+    },
+    {
+      "category": "AI 产品",
+      "title": "基于 CUGA 的印度语语音代理",
+      "summary": "IBM Research 在 Hugging Face 上发布基于 CUGA 的印度语语音代理，该代理在 AppWorld Benchmark 中表现突出。该代理能够处理多种印度语言，但原文未给出可比较的量化结果。",
+      "explanation": "这个AI代理可以理解并回应多种印度语言，就像一个能听懂不同方言的助手，但目前没有具体的数据说明它的表现如何。",
+      "sources": [
+        {
+          "label": "Hugging Face",
+          "url": "https://huggingface.co/blog/ibm-research/an-indic-voice-agent-with-cuga"
+        }
+      ]
+    }
+  ]
+}
