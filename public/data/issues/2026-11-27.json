@@ -1,0 +1,21 @@
+{
+  "date": "2026-11-27",
+  "label": "11.27",
+  "year": "2026",
+  "coverageDate": "2026-11-26",
+  "coverageLabel": "11.26",
+  "items": [
+    {
+      "category": "AI硬件",
+      "title": "llama.cpp × AMD基准测试仪表盘上线",
+      "summary": "该仪表盘支持在AMD Ryzen和Radeon硬件上追踪llama.cpp模型的本地推理性能。测试涵盖Radeon 8060S（gfx1151）和Radeon AI Pro R9700S（gfx1201）两种硬件，通过PP512（处理512个输入token）和TG128（生成128个token）两个指标评估性能，每周运行标准基准测试。测试结果公开，开发者可对比不同量化版本的性能变化。",
+      "explanation": "这个工具就像一个性能检查表，帮助开发者查看AMD显卡运行AI模型时的表现，特别是处理和生成文本的速度，就像检查电脑运行游戏的流畅度一样。",
+      "sources": [
+        {
+          "label": "Hugging Face",
+          "url": "https://huggingface.co/blog/ggml-org/llamacpp-amd-bench"
+        }
+      ]
+    }
+  ]
+}
